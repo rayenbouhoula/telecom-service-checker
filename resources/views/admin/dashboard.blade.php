@@ -60,7 +60,7 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
                         <h6 class="text-muted mb-2">Problems</h6>
-                        <h3 class="mb-0 text-danger">{{ $stats['unavailable'] }}</h3>
+                        <h3 class="mb-0 text-danger">{{ $stats['problem'] }}</h3>
                     </div>
                     <div class="text-danger">
                         <i class="bi bi-exclamation-triangle-fill" style="font-size: 2rem;"></i>
@@ -170,7 +170,7 @@
         data: {
             labels: ['Available', 'Maintenance', 'Unavailable'],
             datasets: [{
-                data: [{{ $stats['available'] }}, {{ $stats['maintenance'] }}, {{ $stats['unavailable'] }}],
+                data: [{{ $stats['available'] }}, {{ $stats['maintenance'] }}, {{ $stats['problem'] }}],
                 backgroundColor: ['#198754', '#ffc107', '#dc3545'],
                 borderWidth: 2,
                 borderColor: '#fff'
@@ -192,25 +192,25 @@
     new Chart(trendCtx, {
         type: 'line',
         data: {
-            labels: {!! json_encode($trendData['labels']) !!},
+            labels: {!! json_encode($statusChangesChart['labels']) !!},
             datasets: [
                 {
                     label: 'Available',
-                    data: {!! json_encode($trendData['available']) !!},
+                    data: {!! json_encode($statusChangesChart['available']) !!},
                     borderColor: '#198754',
                     backgroundColor: 'rgba(25, 135, 84, 0.1)',
                     tension: 0.4
                 },
                 {
                     label: 'Maintenance',
-                    data: {!! json_encode($trendData['maintenance']) !!},
+                    data: {!! json_encode($statusChangesChart['maintenance']) !!},
                     borderColor: '#ffc107',
                     backgroundColor: 'rgba(255, 193, 7, 0.1)',
                     tension: 0.4
                 },
                 {
                     label: 'Unavailable',
-                    data: {!! json_encode($trendData['unavailable']) !!},
+                    data: {!! json_encode($statusChangesChart['unavailable']) !!},
                     borderColor: '#dc3545',
                     backgroundColor: 'rgba(220, 53, 69, 0.1)',
                     tension: 0.4

@@ -45,34 +45,51 @@ class DashboardController extends Controller
         $sevenDaysAgo = now()->subDays(7);
         $statusChangesOverTime = StatusHistory::select(
             DB::raw('DATE(created_at) as date'),
+            'new_status',
             DB::raw('COUNT(*) as count')
         )
             ->where('created_at', '>=', $sevenDaysAgo)
-            ->groupBy('date')
+            ->groupBy('date', 'new_status')
             ->orderBy('date')
             ->get();
 
-        // Fill in missing dates with 0 counts
+        // Fill in missing dates with 0 counts for each status
         $dateRange = [];
-        $counts = [];
+        $availableCounts = [];
+        $maintenanceCounts = [];
+        $problemCounts = [];
+        
         for ($i = 6; $i >= 0; $i--) {
             $date = now()->subDays($i)->format('Y-m-d');
             $dateRange[] = $date;
             
-            $change = $statusChangesOverTime->firstWhere('date', $date);
-            $counts[] = $change ? $change->count : 0;
+            $availableChange = $statusChangesOverTime->where('date', $date)->where('new_status', 'available')->first();
+            $availableCounts[] = $availableChange ? $availableChange->count : 0;
+            
+            $maintenanceChange = $statusChangesOverTime->where('date', $date)->where('new_status', 'maintenance')->first();
+            $maintenanceCounts[] = $maintenanceChange ? $maintenanceChange->count : 0;
+            
+            $problemChange = $statusChangesOverTime->where('date', $date)->where('new_status', 'problem')->first();
+            $problemCounts[] = $problemChange ? $problemChange->count : 0;
         }
 
         $statusChangesChart = [
             'labels' => $dateRange,
-            'data' => $counts,
+            'available' => $availableCounts,
+            'maintenance' => $maintenanceCounts,
+            'unavailable' => $problemCounts,
         ];
 
-        return view('admin.dashboard.index', compact(
-            'totalServices',
-            'availableCount',
-            'maintenanceCount',
-            'problemCount',
+        // Package stats into an array for the view
+        $stats = [
+            'total' => $totalServices,
+            'available' => $availableCount,
+            'maintenance' => $maintenanceCount,
+            'problem' => $problemCount,
+        ];
+
+        return view('admin.dashboard', compact(
+            'stats',
             'recentChanges',
             'statusDistribution',
             'statusChangesChart'
