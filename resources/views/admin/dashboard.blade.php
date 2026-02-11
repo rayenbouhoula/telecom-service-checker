@@ -168,7 +168,7 @@
     new Chart(statusCtx, {
         type: 'doughnut',
         data: {
-            labels: ['Available', 'Maintenance', 'Unavailable'],
+            labels: ['Available', 'Maintenance', 'Problem'],
             datasets: [{
                 data: [{{ $stats['available'] }}, {{ $stats['maintenance'] }}, {{ $stats['problem'] }}],
                 backgroundColor: ['#198754', '#ffc107', '#dc3545'],
@@ -209,8 +209,8 @@
                     tension: 0.4
                 },
                 {
-                    label: 'Unavailable',
-                    data: {!! json_encode($statusChangesChart['unavailable']) !!},
+                    label: 'Problem',
+                    data: {!! json_encode($statusChangesChart['problem']) !!},
                     borderColor: '#dc3545',
                     backgroundColor: 'rgba(220, 53, 69, 0.1)',
                     tension: 0.4

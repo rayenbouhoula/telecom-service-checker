@@ -77,7 +77,7 @@ class DashboardController extends Controller
             'labels' => $dateRange,
             'available' => $availableCounts,
             'maintenance' => $maintenanceCounts,
-            'unavailable' => $problemCounts,
+            'problem' => $problemCounts,
         ];
 
         // Package stats into an array for the view

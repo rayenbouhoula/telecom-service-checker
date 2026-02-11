@@ -77,7 +77,7 @@
                     <option value="">Any Status</option>
                     <option value="available" {{ request('old_status') == 'available' ? 'selected' : '' }}>Available</option>
                     <option value="maintenance" {{ request('old_status') == 'maintenance' ? 'selected' : '' }}>Maintenance</option>
-                    <option value="unavailable" {{ request('old_status') == 'unavailable' ? 'selected' : '' }}>Unavailable</option>
+                    <option value="problem" {{ request('old_status') == 'problem' ? 'selected' : '' }}>Problem</option>
                 </select>
             </div>
             <div class="col-md-3">
@@ -86,7 +86,7 @@
                     <option value="">Any Status</option>
                     <option value="available" {{ request('new_status') == 'available' ? 'selected' : '' }}>Available</option>
                     <option value="maintenance" {{ request('new_status') == 'maintenance' ? 'selected' : '' }}>Maintenance</option>
-                    <option value="unavailable" {{ request('new_status') == 'unavailable' ? 'selected' : '' }}>Unavailable</option>
+                    <option value="problem" {{ request('new_status') == 'problem' ? 'selected' : '' }}>Problem</option>
                 </select>
             </div>
             <div class="col-md-3 d-flex align-items-end gap-2">

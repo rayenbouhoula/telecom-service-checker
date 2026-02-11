@@ -48,7 +48,7 @@
                     <option value="">All Statuses</option>
                     <option value="available" {{ request('status') == 'available' ? 'selected' : '' }}>Available</option>
                     <option value="maintenance" {{ request('status') == 'maintenance' ? 'selected' : '' }}>Maintenance</option>
-                    <option value="unavailable" {{ request('status') == 'unavailable' ? 'selected' : '' }}>Unavailable</option>
+                    <option value="problem" {{ request('status') == 'problem' ? 'selected' : '' }}>Problem</option>
                 </select>
             </div>
             <div class="col-md-3 d-flex align-items-end gap-2">
@@ -71,8 +71,8 @@
     <a href="{{ route('admin.services.index', ['status' => 'maintenance']) }}" class="btn btn-sm btn-outline-warning">
         <i class="bi bi-tools"></i> Maintenance ({{ $statusCounts['maintenance'] ?? 0 }})
     </a>
-    <a href="{{ route('admin.services.index', ['status' => 'unavailable']) }}" class="btn btn-sm btn-outline-danger">
-        <i class="bi bi-exclamation-triangle"></i> Unavailable ({{ $statusCounts['unavailable'] ?? 0 }})
+    <a href="{{ route('admin.services.index', ['status' => 'problem']) }}" class="btn btn-sm btn-outline-danger">
+        <i class="bi bi-exclamation-triangle"></i> Problem ({{ $statusCounts['problem'] ?? 0 }})
     </a>
 </div>
 

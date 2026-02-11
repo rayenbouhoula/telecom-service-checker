@@ -239,10 +239,10 @@
             // Determine status badge color
             let badgeClass = 'bg-success';
             let statusIcon = 'check-circle-fill';
-            if (data.status === 'limited') {
+            if (data.status === 'maintenance') {
                 badgeClass = 'bg-warning';
                 statusIcon = 'exclamation-triangle-fill';
-            } else if (data.status === 'unavailable') {
+            } else if (data.status === 'problem') {
                 badgeClass = 'bg-danger';
                 statusIcon = 'x-circle-fill';
             }

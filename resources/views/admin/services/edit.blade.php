@@ -58,9 +58,9 @@
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input @error('status') is-invalid @enderror" type="radio" name="status" id="status_unavailable" value="unavailable" {{ old('status', $service->status) == 'unavailable' ? 'checked' : '' }}>
-                                <label class="form-check-label" for="status_unavailable">
-                                    <span class="badge bg-danger">Unavailable</span>
+                                <input class="form-check-input @error('status') is-invalid @enderror" type="radio" name="status" id="status_problem" value="problem" {{ old('status', $service->status) == 'problem' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="status_problem">
+                                    <span class="badge bg-danger">Problem</span>
                                 </label>
                             </div>
                         </div>
