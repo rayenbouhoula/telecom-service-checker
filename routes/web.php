@@ -10,8 +10,16 @@ use App\Http\Controllers\Admin\ServiceTypeController;
 use App\Http\Controllers\Admin\StatusHistoryController;
 use Illuminate\Support\Facades\Route;
 
-// Public routes
-Route::get('/', [HomeController::class, 'index'])->name('home');
+// Public routes - NO AUTH REQUIRED
+Route::get('/', function () {
+    return view('welcome-new');
+})->name('home');
+
+Route::get('/coverage', function () {
+    return view('coverage.public');
+})->name('coverage.public');
+
+// Legacy public routes (keep for backward compatibility)
 Route::get('/check-availability', [AvailabilityCheckController::class, 'index'])->name('check.index');
 Route::post('/check-availability', [AvailabilityCheckController::class, 'check'])->name('check.availability');
 
@@ -41,8 +49,8 @@ Route::middleware('auth')->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-// Coverage Checker route
-Route::middleware('auth')->get('/coverage', function () {
+// Admin Coverage Checker route (keep auth for admin version)
+Route::middleware('auth')->get('/admin/coverage', function () {
     return view('coverage.index');
 })->name('coverage.index');
 

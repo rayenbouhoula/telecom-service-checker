@@ -12,7 +12,12 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Inter', 'Figtree', ...defaultTheme.fontFamily.sans],
+            },
+            colors: {
+                'tt-red': '#E30613',
+                'tt-red-dark': '#B80510',
+                'tt-red-light': '#FFE5E7',
             },
         },
     },
