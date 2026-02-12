@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/check-availability', [AvailabilityCheckController::class, 'index'])->name('check.index');
 Route::post('/check-availability', [AvailabilityCheckController::class, 'check'])->name('check.availability');
+Route::get('/coverage-checker', function () {
+    return view('taghtia.index');
+})->name('coverage.checker');
 
 // Admin routes (protected)
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
