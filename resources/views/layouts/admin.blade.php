@@ -123,7 +123,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.services.*') ? 'active' : '' }}" href="{{ route('admin.services.index') }}">
+                    <a class="nav-link {{ request()->routeIs('admin.service-availability.*') ? 'active' : '' }}" href="{{ route('admin.service-availability.index') }}">
                         <i class="bi bi-broadcast-pin"></i> Service Availability
                     </a>
                 </li>
@@ -138,7 +138,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.history.*') ? 'active' : '' }}" href="{{ route('admin.history.index') }}">
+                    <a class="nav-link {{ request()->routeIs('admin.status-history.*') ? 'active' : '' }}" href="{{ route('admin.status-history.index') }}">
                         <i class="bi bi-clock-history"></i> Status History
                     </a>
                 </li>

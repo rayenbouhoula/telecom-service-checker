@@ -11,7 +11,7 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2><i class="bi bi-clock-history"></i> Status History</h2>
-    <a href="{{ route('admin.history.export', request()->query()) }}" class="btn btn-success">
+    <a href="{{ route('admin.status-history.export', request()->query()) }}" class="btn btn-success">
         <i class="bi bi-download"></i> Export to CSV
     </a>
 </div>
@@ -22,7 +22,7 @@
         <h5 class="mb-0"><i class="bi bi-funnel"></i> Filter Options</h5>
     </div>
     <div class="card-body">
-        <form method="GET" action="{{ route('admin.history.index') }}" class="row g-3">
+        <form method="GET" action="{{ route('admin.status-history.index') }}" class="row g-3">
             <div class="col-md-3">
                 <label for="date_from" class="form-label">From Date</label>
                 <input type="date" 
@@ -77,7 +77,7 @@
                     <button type="submit" class="btn btn-primary">
                         <i class="bi bi-search"></i> Apply Filters
                     </button>
-                    <a href="{{ route('admin.history.index') }}" class="btn btn-outline-secondary">
+                    <a href="{{ route('admin.status-history.index') }}" class="btn btn-outline-secondary">
                         <i class="bi bi-x-circle"></i> Clear Filters
                     </a>
                 </div>
@@ -193,7 +193,7 @@
                                 <i class="bi bi-inbox" style="font-size: 2rem;"></i>
                                 <p class="mb-0">No status history records found</p>
                                 @if(request()->hasAny(['date_from', 'date_to', 'area_id', 'service_type_id', 'changed_by']))
-                                    <a href="{{ route('admin.history.index') }}" class="btn btn-sm btn-primary mt-2">
+                                    <a href="{{ route('admin.status-history.index') }}" class="btn btn-sm btn-primary mt-2">
                                         <i class="bi bi-x-circle"></i> Clear Filters
                                     </a>
                                 @endif

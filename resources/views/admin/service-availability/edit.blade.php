@@ -4,7 +4,7 @@
 
 @php
     $breadcrumbs = [
-        ['title' => 'Service Availability', 'url' => route('admin.services.index')],
+        ['title' => 'Service Availability', 'url' => route('admin.service-availability.index')],
         ['title' => 'Edit', 'url' => '']
     ];
 @endphp
@@ -12,7 +12,7 @@
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2><i class="bi bi-pencil"></i> Edit Service Availability</h2>
-    <a href="{{ route('admin.services.index') }}" class="btn btn-outline-secondary">
+    <a href="{{ route('admin.service-availability.index') }}" class="btn btn-outline-secondary">
         <i class="bi bi-arrow-left"></i> Back to List
     </a>
 </div>
@@ -24,7 +24,7 @@
                 <h5 class="mb-0">Service Details</h5>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.services.update', $serviceAvailability) }}" method="POST">
+                <form action="{{ route('admin.service-availability.update', $serviceAvailability) }}" method="POST">
                     @csrf
                     @method('PUT')
 
@@ -142,7 +142,7 @@
                     </div>
 
                     <div class="d-flex gap-2 justify-content-end">
-                        <a href="{{ route('admin.services.index') }}" class="btn btn-secondary">
+                        <a href="{{ route('admin.service-availability.index') }}" class="btn btn-secondary">
                             <i class="bi bi-x-circle"></i> Cancel
                         </a>
                         <button type="submit" class="btn btn-primary">

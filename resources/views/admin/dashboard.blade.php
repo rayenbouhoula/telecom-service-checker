@@ -99,7 +99,7 @@
 <div class="card mb-4">
     <div class="card-header bg-white d-flex justify-content-between align-items-center">
         <h5 class="mb-0"><i class="bi bi-clock-history"></i> Recent Status Changes</h5>
-        <a href="{{ route('admin.history.index') }}" class="btn btn-sm btn-outline-primary">View All</a>
+        <a href="{{ route('admin.status-history.index') }}" class="btn btn-sm btn-outline-primary">View All</a>
     </div>
     <div class="card-body p-0">
         <div class="table-responsive">
@@ -145,7 +145,7 @@
         <h5 class="mb-0"><i class="bi bi-lightning-fill"></i> Quick Actions</h5>
     </div>
     <div class="card-body">
-        <a href="{{ route('admin.services.create') }}" class="btn btn-primary me-2 mb-2">
+        <a href="{{ route('admin.service-availability.create') }}" class="btn btn-primary me-2 mb-2">
             <i class="bi bi-plus-circle"></i> Add New Service
         </a>
         <a href="{{ route('admin.areas.create') }}" class="btn btn-outline-primary me-2 mb-2">
@@ -154,7 +154,7 @@
         <a href="{{ route('admin.service-types.create') }}" class="btn btn-outline-primary me-2 mb-2">
             <i class="bi bi-plus-circle"></i> Add Service Type
         </a>
-        <a href="{{ route('admin.history.index') }}" class="btn btn-outline-secondary mb-2">
+        <a href="{{ route('admin.status-history.index') }}" class="btn btn-outline-secondary mb-2">
             <i class="bi bi-download"></i> Export History
         </a>
     </div>

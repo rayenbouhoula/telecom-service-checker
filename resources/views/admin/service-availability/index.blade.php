@@ -12,10 +12,10 @@
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2><i class="bi bi-broadcast-pin"></i> Service Availability</h2>
     <div class="d-flex gap-2">
-        <a href="{{ route('admin.services.export') }}" class="btn btn-outline-success">
+        <a href="{{ route('admin.service-availability.export') }}" class="btn btn-outline-success">
             <i class="bi bi-download"></i> Export CSV
         </a>
-        <a href="{{ route('admin.services.create') }}" class="btn btn-primary">
+        <a href="{{ route('admin.service-availability.create') }}" class="btn btn-primary">
             <i class="bi bi-plus-circle"></i> Add New Service
         </a>
     </div>
@@ -27,7 +27,7 @@
         <h5 class="mb-0"><i class="bi bi-funnel"></i> Filters</h5>
     </div>
     <div class="card-body">
-        <form method="GET" action="{{ route('admin.services.index') }}" class="row g-3">
+        <form method="GET" action="{{ route('admin.service-availability.index') }}" class="row g-3">
             <div class="col-md-3">
                 <label class="form-label">Area</label>
                 <select name="area_id" class="form-select">
@@ -63,7 +63,7 @@
                 <button type="submit" class="btn btn-primary flex-grow-1">
                     <i class="bi bi-search"></i> Apply Filters
                 </button>
-                <a href="{{ route('admin.services.index') }}" class="btn btn-outline-secondary">
+                <a href="{{ route('admin.service-availability.index') }}" class="btn btn-outline-secondary">
                     <i class="bi bi-x-circle"></i> Clear
                 </a>
             </div>
@@ -145,10 +145,10 @@
                                         <i class="bi bi-exclamation-triangle"></i>
                                     </button>
                                 </div>
-                                <a href="{{ route('admin.services.edit', $service) }}" class="btn btn-sm btn-outline-primary ms-2">
+                                <a href="{{ route('admin.service-availability.edit', $service) }}" class="btn btn-sm btn-outline-primary ms-2">
                                     <i class="bi bi-pencil"></i> Edit
                                 </a>
-                                <form action="{{ route('admin.services.destroy', $service) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this service?');">
+                                <form action="{{ route('admin.service-availability.destroy', $service) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this service?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-outline-danger">
@@ -162,7 +162,7 @@
                             <td colspan="7" class="text-center text-muted py-4">
                                 <i class="bi bi-inbox" style="font-size: 2rem;"></i>
                                 <p class="mb-0">No service availability records found</p>
-                                <a href="{{ route('admin.services.create') }}" class="btn btn-sm btn-primary mt-2">
+                                <a href="{{ route('admin.service-availability.create') }}" class="btn btn-sm btn-primary mt-2">
                                     <i class="bi bi-plus-circle"></i> Add First Service
                                 </a>
                             </td>
@@ -184,7 +184,7 @@
 <script>
 function updateStatus(serviceId, status) {
     if (confirm('Are you sure you want to update the status to ' + status + '?')) {
-        fetch('{{ route("admin.services.quick-update") }}', {
+        fetch('{{ route("admin.service-availability.quick-update") }}', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
