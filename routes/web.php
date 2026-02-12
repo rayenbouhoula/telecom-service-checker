@@ -41,6 +41,11 @@ Route::middleware('auth')->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+// Coverage Checker route
+Route::middleware('auth')->get('/coverage', function () {
+    return view('coverage.index');
+})->name('coverage.index');
+
 // Profile routes
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
