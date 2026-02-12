@@ -6,6 +6,8 @@ A modern Laravel application for checking telecom service availability in differ
 
 - ✅ Customer portal for checking service availability
 - ✅ Real-time status updates with auto-refresh (every 30 seconds)
+- ✅ **Coverage Checker** - Interactive map-based coverage verification (powered by More-Taghtia)
+- ✅ **Coverage API** - RESTful API for coverage data with historical tracking
 - ✅ Admin dashboard with analytics and charts
 - ✅ Service management (CRUD operations)
 - ✅ Area and service type management
@@ -58,7 +60,22 @@ A modern Laravel application for checking telecom service availability in differ
    php artisan key:generate
    ```
 
-6. **Configure database**
+6. **Configure API keys (Optional)**
+   
+   For the coverage checker to work with live data, configure these in `.env`:
+   ```env
+   # Tunisie Telecom API (optional - uses mock data by default)
+   TT_API_URL=https://geo.tunisietelecom.tn/mytaghtia
+   TT_API_KEY=your_api_key_here
+   TT_API_TIMEOUT=10
+   
+   # Mapbox token for map visualization (optional)
+   MAPBOX_TOKEN=your_mapbox_token_here
+   ```
+   
+   > **Note**: The application works with mock coverage data by default. API keys are only needed for production use with real Tunisie Telecom data.
+
+7. **Configure database**
    
    For SQLite (default):
    ```bash
@@ -110,6 +127,13 @@ After running the seeders, you can login with:
 ### Public Routes
 - `/` - Landing page with features showcase
 - `/check-availability` - Check service availability by area and service type
+- `/coverage-checker` - Interactive coverage checker with map visualization
+
+### API Routes
+- `POST /api/v1/coverage/check` - Check coverage for a location
+- `GET /api/v1/coverage/history` - Get coverage check history
+- `GET /api/v1/coverage/stats` - Get coverage statistics
+- `GET /api/v1/coverage/compare` - Compare coverage between areas
 
 ### Admin Routes (Authentication Required)
 - `/admin/dashboard` - Statistics and analytics dashboard
@@ -147,6 +171,46 @@ After running the seeders, you can login with:
 - View who made changes and when
 - Export filtered results to CSV
 
+### Coverage Checker (New!)
+- **Interactive Map**: Point-and-click coverage checking with Mapbox integration
+- **Real-time Coverage Data**: Check 2G, 3G, 4G, ADSL, VDSL, GPON Fiber, and P2P Fiber availability
+- **Historical Tracking**: All coverage checks are stored in the database for analysis
+- **Heatmap Visualization**: See coverage patterns across different connection types
+- **Batch Checking**: Select multiple locations and check simultaneously
+- **Favorites & History**: Save frequently checked locations
+- **API Access**: RESTful API for programmatic access to coverage data
+- **Statistics Dashboard**: Track total checks, most-checked areas, and trends
+- **Caching**: 5-minute cache to reduce API calls and improve performance
+
+#### Coverage API Endpoints
+
+**POST `/api/v1/coverage/check`**
+Check coverage for a specific location:
+```json
+{
+  "governorate": "Tunis",
+  "latitude": 36.8065,
+  "longitude": 10.1815
+}
+```
+
+**GET `/api/v1/coverage/history?governorate=Tunis&limit=20`**
+Get historical coverage checks with optional filters.
+
+**GET `/api/v1/coverage/stats`**
+Get statistics about coverage checks:
+```json
+{
+  "total_checks": 150,
+  "total_areas": 24,
+  "checks_today": 15,
+  "most_checked_areas": [...]
+}
+```
+
+**GET `/api/v1/coverage/compare?areas[]=Tunis&areas[]=Sfax`**
+Compare coverage between multiple areas (2-5 areas).
+
 ## Database Schema
 
 ### Tables
@@ -155,6 +219,7 @@ After running the seeders, you can login with:
 - `service_types` - Types of services offered
 - `service_availability` - Current service status per area
 - `status_history` - Audit trail of status changes
+- `coverage_checks` - Coverage check history with location data
 
 ## Development
 

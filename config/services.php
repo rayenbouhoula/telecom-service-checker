@@ -35,4 +35,14 @@ return [
         ],
     ],
 
+    'tunisietelecom' => [
+        'url' => env('TT_API_URL', 'https://geo.tunisietelecom.tn/mytaghtia'),
+        'api_key' => env('TT_API_KEY'),
+        'timeout' => env('TT_API_TIMEOUT', 10),
+    ],
+
+    'mapbox' => [
+        'token' => env('MAPBOX_TOKEN'),
+    ],
+
 ];

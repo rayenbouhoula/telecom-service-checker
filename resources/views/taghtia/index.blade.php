@@ -1,0 +1,253 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+		<meta name="csrf-token" content="{{ csrf_token() }}">
+		<link rel="icon" href="{{ asset('taghtia/tt.ico') }}">
+		<title>More Taghtia - Coverage Checker</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+		<script src='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.js'></script>
+		<link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
+		<script src="https://cdn.jsdelivr.net/npm/leaflet.heat@0.2.0/dist/leaflet-heat.min.js"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+		<script id="search-js" defer src="https://api.mapbox.com/search-js/v1.0.0-beta.18/web.js"></script>
+		<link href='{{ asset('taghtia/style.css') }}' rel='stylesheet' />
+	</head>
+	<body>
+		
+		<!-- navigation bar color must be 00426b -->
+		<nav class="navbar navbar-fixed-top header" style="background-color: #00426b; color: #ffffff;" role="navigation">
+			<div class="navbar-header">
+				<a href="#">
+					<img src="{{ asset('taghtia/taghtia.png') }}" alt="taghtia" width="80" height="53" style="margin-left: 10px; margin-right: 10px; margin-top: 5px; margin-bottom: 5px;" />
+				</a>
+			</div>
+			<!-- Put to the rightest side the image -->
+			<a href="https://github.com/Jev1337" target="_blank" style="float: right">
+				<img src="{{ asset('taghtia/reps.png') }}" alt="reps" width="70" height="53" style="margin-left: 10px; margin-right: 10px; margin-top: 5px; margin-bottom: 5px; float: right;" />
+                <span style="float: right; margin-top: 20px; margin-right: 10px; color: #ffffff;">Release v2.7</span>
+			</a>
+		</nav>
+		<div id="panel">
+			<div id="collapseBtn">
+				<button type="button" class="btn btn-sm hidden-xs" onclick="collapsePanel();">
+					< </button>
+			</div>
+			<div id="panelContent" class="container-fluid">
+                <div id="footer" style="font-size: small;">
+
+                    <p style="text-align: center;"><b>Disclaimer: This is done for educational purposes only. I do not own the API.</b></p>
+                    <a href="https://geo.tunisietelecom.tn/mytaghtia/" target="_blank">Original Taghtia</a>
+                </div>
+                <hr>
+				<div id="contentTable">
+					<h4>Potential:</h4>
+					<table width="100%">
+						<tr>
+							<td>2G</td>
+							<td style="color: orange;" id="2G">--</td>
+						</tr>
+						<tr>
+							<td>3G</td>
+							<td style="color: orange;" id="3G">--</td>
+						</tr>
+						<tr>
+							<td>4G</td>
+							<td style="color: orange;" id="4G">--</td>
+						</tr>
+						<tr>
+							<td>ADSL</td>
+							<td style="color: orange;" id="ADSL">--</td>
+						</tr>
+						<tr>
+							<td>VDSL</td>
+							<td style="color: orange;" id="VDSL">--</td>
+						</tr>
+						<tr>
+							<td>GPON Fiber</td>
+							<td style="color: orange;" id="GPONFiber">--</td>
+						</tr>
+						<tr>
+							<td>P2P Fiber</td>
+							<td style="color: orange;" id="P2PFiber">--</td>
+						</tr>
+					</table>
+				</div>
+				<hr>
+				<div id="more"></div>
+		
+				<button id="taghtia" class="btn btn-primary" style="background-color: #00426b; border-color: #00426b;" onclick="taghtia();">Check Coverage</button>
+				<hr>				<div style="text-align: center;">
+					<p><b>Tools</b></p>
+				<a id="xycord" class="btn" style="background-color:transparent"><i class="bi bi-search" style="color: #00426b; font-size: 28px;"></i></a>
+				<a id="copy" class="btn" style="background-color:transparent" > <i class="bi bi-copy" style="color: #00426b; font-size: 28px;"></i></a>
+				<a id="share" class="btn" style="background-color:transparent"> <i class="bi bi-share" style="color: #00426b; font-size: 28px;"></i></a>
+				<a id="googlemaps" class="btn" style="background-color:transparent"><i class="bi bi-geo-alt" style="color: #00426b; font-size: 28px;"></i></a>
+				<a id="history" class="btn" style="background-color:transparent"><i class="bi bi-clock-history" style="color: #00426b; font-size: 28px;"></i></a>
+				<a id="fav" class="btn" style="background-color:transparent"><i class="bi bi-star" style="color: #00426b; font-size: 28px;"></i></a>				<a id="toggleHeatmap" class="btn" style="background-color:transparent" title="Toggle Connection Heatmaps (Red=ADSL, Orange=VDSL, Blue/Green=GPON)"><i class="bi bi-thermometer-half" style="color: #00426b; font-size: 28px;"></i></a>
+				<a id="toggleBatchMode" class="btn" style="background-color:transparent" title="Toggle Batch Selection Mode - Click multiple locations to check simultaneously"><i class="bi bi-cursor-fill" style="color: #00426b; font-size: 28px;"></i></a>
+				<a id="clearhistory" class="btn" style="background-color:transparent"><i class="bi bi-trash" style="color: #00426b; font-size: 28px;"></i></a><br><small> This only works with TT's Infrastructure, to visit Ooredoo's map please <a href="https://www.ooredoo.tn/Personal/fr/content/797-test-eligibilite-internet"> click here</a>. </small>
+			</div>
+			</div>
+		</div>
+		<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+			<div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
+			  <div class="toast-header">
+				<i class="bi bi-geo-alt"></i>
+				<strong class="me-auto" style="margin-left: 5px;">More Taghtia</strong>
+				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+			  </div>
+			  <div class="toast-body" id="copied">
+			  </div>
+			</div>
+		</div>
+		<input style="position: absolute; z-index: 1; margin-left: 50px; margin-top: 20px; border-radius: 5px; border: 1px solid #00426b; padding: 5px; background-color: #ffffff" type="text" id="address" placeholder="Enter your Governorate ↵"> 
+		<button style="position: absolute; z-index: 1; margin-left: 250px; margin-top: 20px; border-radius: 5px; border: 1px solid #00426b; padding: 5px; background-color: #ffffff" onclick="zoomtocurrentlocation();">
+			<i class="bi bi-crosshair"></i>
+		</button>
+		<div id="map-display" class="dark"></div>
+		<div class="modal fade" id="favouritesModal" tabindex="-1" aria-labelledby="favouritesModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="favouritesModalLabel">Favourites</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<ul id="favouritesList" class="list-group">
+							<!-- List of favourite locations will be appended here -->
+						</ul>
+						<hr>
+						<div class="mb-3">
+							<label for="favLat" class="form-label">Latitude</label>
+							<input type="text" class="form-control" id="favLat" placeholder="Example: 36.806495">
+						</div>
+						<div class="mb-3">
+							<label for="favLng" class="form-label">Longitude</label>
+							<input type="text" class="form-control" id="favLng" placeholder="Example: 10.181532">
+						</div>
+						<button type="button" class="btn btn-primary" id="addFavourite">Add Favourite</button>
+						<button type="button" class="btn btn-secondary" id="addCurrentLocation">Add Current Location</button>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="historyModal" tabindex="-1" aria-labelledby="historyModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="historyModalLabel">Search History</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<ul id="historyList" class="list-group">
+							<!-- List of recently searched locations will be appended here -->
+						</ul>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="coordinateModal" tabindex="-1" aria-labelledby="coordinateModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="coordinateModalLabel">Enter Coordinates</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						
+					</div>
+				
+					<div class="modal-body">
+						<div class="modal-tip">
+							<small>Tip: These are X and Y cords found on Google Maps for example.</small>
+						</div>
+						<div class="mb-3">
+							<label for="lat" class="form-label">Latitude</label>
+							<input type="text" class="form-control" id="lat" placeholder="Example: 36.806495">
+						</div>
+						<div class="mb-3">
+							<label for="lng" class="form-label">Longitude</label>
+							<input type="text" class="form-control" id="lng" placeholder="Example: 10.181532">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" id="saveCoordinates">Save coordinates</button>
+					</div>
+				</div>
+			</div>		</div>
+
+		<!-- Batch Check Modal -->
+		<div class="modal fade" id="batchModal" tabindex="-1" aria-labelledby="batchModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="batchModalLabel">
+							<i class="bi bi-layers"></i> Batch Coverage Check
+						</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-8">								<div class="alert alert-info">
+									<i class="bi bi-info-circle"></i>
+									<strong>How it works:</strong> Click on the map to add locations to your batch queue. The system will check locations in groups of 5 simultaneously and display results on the heatmap.
+								</div>
+								
+								<div id="batchSelectionAlert" class="alert alert-success" style="display: none;">
+									<i class="bi bi-cursor-fill"></i>
+									<strong>Selection Mode Active:</strong> Click anywhere on the map to add locations to your batch queue.
+								</div>
+								
+								<div class="d-flex gap-2 mb-3">
+									<button type="button" class="btn btn-primary" id="startBatchSelection">
+										<i class="bi bi-cursor-fill"></i> Start Selection
+									</button>
+									<button type="button" class="btn btn-secondary" id="stopBatchSelection" style="display: none;">
+										<i class="bi bi-stop-circle"></i> Stop Selection
+									</button>
+									<button type="button" class="btn btn-success" id="processBatch" disabled>
+										<i class="bi bi-play-fill"></i> Process Batch (<span id="batchCount">0</span>)
+									</button>
+									<button type="button" class="btn btn-danger" id="clearBatch">
+										<i class="bi bi-trash"></i> Clear All
+									</button>
+								</div>
+								
+								<div class="progress mb-3" style="display: none;" id="batchProgress">
+									<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%" id="batchProgressBar">0%</div>
+								</div>
+								
+								<div id="batchStatus" class="text-muted"></div>
+							</div>
+							
+							<div class="col-md-4">
+								<h6>Batch Queue (<span id="queueCount">0</span>)</h6>
+								<div id="batchQueue" style="max-height: 300px; overflow-y: auto; border: 1px solid #ddd; border-radius: 4px; padding: 10px;">
+									<p class="text-muted text-center">No locations selected</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src='{{ asset('taghtia/script.js') }}'></script>
+
+		<script>
+			// Configure Mapbox token from environment
+			// Set MAPBOX_TOKEN in your .env file
+			window.MAPBOX_TOKEN = '{{ config('services.mapbox.token', '') }}';
+		</script>
+		
+	</body>
+</html>
