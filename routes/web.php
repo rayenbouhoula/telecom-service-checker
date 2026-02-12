@@ -36,6 +36,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/status-history/export', [StatusHistoryController::class, 'export'])->name('status-history.export');
 });
 
+// Dashboard route for authenticated users
+Route::middleware('auth')->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
 // Profile routes
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
