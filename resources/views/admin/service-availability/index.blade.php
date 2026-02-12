@@ -183,7 +183,15 @@
 @push('scripts')
 <script>
 function updateStatus(serviceId, status) {
-    if (confirm('Are you sure you want to update the status to ' + status + '?')) {
+    const statusLabels = {
+        'available': 'Available',
+        'maintenance': 'Under Maintenance',
+        'problem': 'Service Issue'
+    };
+    
+    const statusLabel = statusLabels[status] || status;
+    
+    if (confirm('Are you sure you want to update the status to ' + statusLabel + '?')) {
         fetch('{{ route("admin.service-availability.quick-update") }}', {
             method: 'POST',
             headers: {

@@ -79,11 +79,15 @@
     @stack('styles')
 </head>
 <body>
+    @php
+        $logoExists = file_exists(public_path('images/tunisie-telecom-logo.png'));
+    @endphp
+    
     <!-- Top Navbar -->
     <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center" href="{{ route('admin.dashboard') }}">
-                @if(file_exists(public_path('images/tunisie-telecom-logo.png')))
+                @if($logoExists)
                     <img src="{{ asset('images/tunisie-telecom-logo.png') }}" 
                          alt="Tunisie Telecom" 
                          height="40" 

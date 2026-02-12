@@ -1,12 +1,15 @@
 @extends('layouts.public')
 
 @section('content')
+@php
+    $logoExists = file_exists(public_path('images/tunisie-telecom-logo.png'));
+@endphp
 <!-- Hero Section -->
 <section class="py-5" style="background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);">
     <div class="container py-5">
         <div class="row align-items-center">
             <div class="col-lg-8 mx-auto text-center text-white">
-                @if(file_exists(public_path('images/tunisie-telecom-logo.png')))
+                @if($logoExists)
                     <img src="{{ asset('images/tunisie-telecom-logo.png') }}" 
                          alt="Tunisie Telecom" 
                          class="mb-4" 

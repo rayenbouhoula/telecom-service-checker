@@ -17,11 +17,15 @@
     <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
 </head>
 <body>
+    @php
+        $logoExists = file_exists(public_path('images/tunisie-telecom-logo.png'));
+    @endphp
+    
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold text-primary d-flex align-items-center" href="{{ route('home') }}">
-                @if(file_exists(public_path('images/tunisie-telecom-logo.png')))
+                @if($logoExists)
                     <img src="{{ asset('images/tunisie-telecom-logo.png') }}" 
                          alt="Tunisie Telecom" 
                          height="40" 
@@ -66,7 +70,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <h5 class="fw-bold">
-                        @if(file_exists(public_path('images/tunisie-telecom-logo.png')))
+                        @if($logoExists)
                             <img src="{{ asset('images/tunisie-telecom-logo.png') }}" 
                                  alt="Tunisie Telecom" 
                                  height="30" 
