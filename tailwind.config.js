@@ -43,7 +43,7 @@ export default {
                 },
             },
             fontFamily: {
-                sans: ['Figtree', 'sans-serif'],
+                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
         },
     },
