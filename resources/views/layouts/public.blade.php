@@ -20,19 +20,15 @@
 </head>
 <body class="bg-gray-50 antialiased" x-data="{ mobileMenuOpen: false }">
     <!-- Navbar -->
-    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200">
+    <nav class="bg-white shadow-sm border-b border-gray-200" x-data="{ mobileMenuOpen: false }">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
+            <div class="flex justify-between h-20">
+                <!-- Logo Section - FIXED SIZE -->
                 <div class="flex items-center">
                     <a href="{{ route('home') }}" class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-tt-red rounded-lg flex items-center justify-center">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                            </svg>
-                        </div>
-                        <div class="hidden sm:block">
-                            <div class="text-lg font-bold text-gray-900">Tunisie Telecom</div>
+                        <img src="{{ asset('images/tt-logo.svg') }}" alt="Tunisie Telecom" class="h-12 w-auto">
+                        <div class="border-l-2 border-tt-blue pl-3 hidden sm:block">
+                            <div class="text-lg font-bold text-tt-blue">Service Checker</div>
                             <div class="text-xs text-gray-500">Vérification de Couverture</div>
                         </div>
                     </a>
@@ -40,26 +36,26 @@
 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="{{ route('home') }}" class="text-gray-700 hover:text-tt-red font-medium transition-colors {{ request()->routeIs('home') ? 'text-tt-red border-b-2 border-tt-red' : '' }} pb-1">
+                    <a href="{{ route('home') }}" class="text-gray-700 hover:text-tt-blue font-medium transition-colors {{ request()->routeIs('home') ? 'text-tt-blue border-b-2 border-tt-blue' : '' }} pb-1">
                         Accueil
                     </a>
-                    <a href="{{ route('coverage.public') }}" class="text-gray-700 hover:text-tt-red font-medium transition-colors {{ request()->routeIs('coverage.public') ? 'text-tt-red border-b-2 border-tt-red' : '' }} pb-1">
+                    <a href="{{ route('coverage.public') }}" class="text-gray-700 hover:text-tt-blue font-medium transition-colors {{ request()->routeIs('coverage.public') ? 'text-tt-blue border-b-2 border-tt-blue' : '' }} pb-1">
                         Couverture
                     </a>
                     @auth
-                        <a href="{{ route('dashboard') }}" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+                        <a href="{{ route('dashboard') }}" class="px-6 py-2 bg-tt-blue text-white rounded-lg hover:bg-tt-blue-600 transition-colors font-medium shadow-sm">
                             Dashboard
                         </a>
                     @else
-                        <a href="{{ route('login') }}" class="px-4 py-2 text-gray-700 hover:text-tt-red transition-colors">
+                        <a href="{{ route('login') }}" class="px-6 py-2 bg-tt-blue text-white rounded-lg hover:bg-tt-blue-600 transition-colors font-medium shadow-sm">
                             Connexion
                         </a>
                     @endauth
                 </div>
 
                 <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button @click="mobileMenuOpen = !mobileMenuOpen" type="button" class="text-gray-700 hover:text-tt-red focus:outline-none">
+                <div class="md:hidden flex items-center">
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" type="button" class="text-gray-700 hover:text-tt-blue focus:outline-none">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                             <path x-show="mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -72,10 +68,10 @@
         <!-- Mobile menu -->
         <div x-show="mobileMenuOpen" x-transition class="md:hidden border-t border-gray-200">
             <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('home') ? 'bg-tt-red-light text-tt-red' : 'text-gray-700 hover:bg-gray-100' }}">
+                <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('home') ? 'bg-tt-blue text-white' : 'text-gray-700 hover:bg-gray-100' }}">
                     Accueil
                 </a>
-                <a href="{{ route('coverage.public') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('coverage.public') ? 'bg-tt-red-light text-tt-red' : 'text-gray-700 hover:bg-gray-100' }}">
+                <a href="{{ route('coverage.public') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('coverage.public') ? 'bg-tt-blue text-white' : 'text-gray-700 hover:bg-gray-100' }}">
                     Couverture
                 </a>
                 @auth
@@ -103,7 +99,7 @@
                 <!-- Brand -->
                 <div>
                     <div class="flex items-center space-x-3 mb-4">
-                        <div class="w-10 h-10 bg-tt-red rounded-lg flex items-center justify-center">
+                        <div class="w-10 h-10 bg-tt-blue rounded-lg flex items-center justify-center">
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                             </svg>
@@ -119,10 +115,10 @@
                 <div>
                     <h3 class="font-semibold mb-4">Liens Rapides</h3>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="{{ route('home') }}" class="hover:text-tt-red transition-colors">Accueil</a></li>
-                        <li><a href="{{ route('coverage.public') }}" class="hover:text-tt-red transition-colors">Vérifier la Couverture</a></li>
+                        <li><a href="{{ route('home') }}" class="hover:text-tt-blue transition-colors">Accueil</a></li>
+                        <li><a href="{{ route('coverage.public') }}" class="hover:text-tt-blue transition-colors">Vérifier la Couverture</a></li>
                         @auth
-                            <li><a href="{{ route('dashboard') }}" class="hover:text-tt-red transition-colors">Dashboard</a></li>
+                            <li><a href="{{ route('dashboard') }}" class="hover:text-tt-blue transition-colors">Dashboard</a></li>
                         @endauth
                     </ul>
                 </div>
