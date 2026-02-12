@@ -10,7 +10,11 @@ $.getScript("env.js", function() {
  */
 
 // Mapbox access token - configure this in your .env file
-// Using a placeholder token for demo purposes
+// Check if token is available before initializing map
+if (!window.MAPBOX_TOKEN || window.MAPBOX_TOKEN === '') {
+    console.error('Mapbox token not configured. Please set MAPBOX_TOKEN in your .env file.');
+    // You could show a user-friendly message here
+}
 L.mapbox.accessToken = window.MAPBOX_TOKEN || 'YOUR_MAPBOX_TOKEN_HERE';
 var mymap = L.map('map-display').setView([36.804914, 10.182365], 9);
 L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v12').addTo(mymap);

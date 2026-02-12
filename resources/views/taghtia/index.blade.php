@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<meta charset=utf-8 />
+		<meta charset="utf-8" />
 		<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<link rel="icon" href="{{ asset('taghtia/tt.ico') }}">
@@ -39,7 +39,7 @@
 			<div id="panelContent" class="container-fluid">
                 <div id="footer" style="font-size: small;">
 
-                    <p style="align-content: center;"><b>Disclaimer: This is done for educational purposes only. I do not own the API.</b></p>
+                    <p style="text-align: center;"><b>Disclaimer: This is done for educational purposes only. I do not own the API.</b></p>
                     <a href="https://geo.tunisietelecom.tn/mytaghtia/" target="_blank">Original Taghtia</a>
                 </div>
                 <hr>
