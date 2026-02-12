@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AvailabilityCheckController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ServiceAvailabilityController;
 use App\Http\Controllers\Admin\AreaController;
@@ -18,6 +19,9 @@ Route::get('/', function () {
 Route::get('/coverage', function () {
     return view('coverage.public');
 })->name('coverage.public');
+
+// Language switcher route
+Route::get('/language/{locale}', [LanguageController::class, 'switch'])->name('language.switch');
 
 // Legacy public routes (keep for backward compatibility)
 Route::get('/check-availability', [AvailabilityCheckController::class, 'index'])->name('check.index');

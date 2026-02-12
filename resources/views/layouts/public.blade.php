@@ -15,12 +15,14 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     
+    @stack('styles')
+    
     <!-- AlpineJS -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
-<body class="bg-gray-50 antialiased" x-data="{ mobileMenuOpen: false }">
+<body class="bg-gray-50 dark:bg-gray-900 antialiased" x-data="{ mobileMenuOpen: false }">
     <!-- Navbar -->
-    <nav class="bg-white shadow-sm border-b border-gray-200" x-data="{ mobileMenuOpen: false }">
+    <nav class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700" x-data="{ mobileMenuOpen: false }">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20">
                 <!-- Logo Section - FIXED SIZE -->
@@ -31,26 +33,47 @@
                         </div>
                         <div class="border-l-2 border-tt-blue pl-3">
                             <div class="text-lg font-bold text-tt-blue">Tunisie Telecom</div>
-                            <div class="text-xs text-gray-500">Vérification de Couverture</div>
+                            <div class="text-xs text-gray-500 dark:text-gray-400">{{ __('Coverage Checker') }}</div>
                         </div>
                     </a>
                 </div>
 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="{{ route('home') }}" class="text-gray-700 hover:text-tt-blue font-medium transition-colors {{ request()->routeIs('home') ? 'text-tt-blue border-b-2 border-tt-blue' : '' }} pb-1">
-                        Accueil
+                    <a href="{{ route('home') }}" class="text-gray-700 dark:text-gray-300 hover:text-tt-blue font-medium transition-colors {{ request()->routeIs('home') ? 'text-tt-blue border-b-2 border-tt-blue' : '' }} pb-1">
+                        {{ __('Home') }}
                     </a>
-                    <a href="{{ route('coverage.public') }}" class="text-gray-700 hover:text-tt-blue font-medium transition-colors {{ request()->routeIs('coverage.public') ? 'text-tt-blue border-b-2 border-tt-blue' : '' }} pb-1">
-                        Couverture
+                    <a href="{{ route('coverage.public') }}" class="text-gray-700 dark:text-gray-300 hover:text-tt-blue font-medium transition-colors {{ request()->routeIs('coverage.public') ? 'text-tt-blue border-b-2 border-tt-blue' : '' }} pb-1">
+                        {{ __('Coverage') }}
                     </a>
+
+                    <!-- Dark Mode Toggle -->
+                    <button onclick="toggleDarkMode()" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300">
+                        <svg class="w-6 h-6 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                        </svg>
+                        <svg class="w-6 h-6 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                    </button>
+
+                    <!-- Language Switcher -->
+                    <div class="flex items-center space-x-2">
+                        <a href="{{ route('language.switch', 'fr') }}" class="px-3 py-1 rounded {{ app()->getLocale() == 'fr' ? 'bg-tt-blue text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700' }}">
+                            FR
+                        </a>
+                        <a href="{{ route('language.switch', 'en') }}" class="px-3 py-1 rounded {{ app()->getLocale() == 'en' ? 'bg-tt-blue text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700' }}">
+                            EN
+                        </a>
+                    </div>
+
                     @auth
                         <a href="{{ route('dashboard') }}" class="px-6 py-2 bg-tt-blue text-white rounded-lg hover:bg-tt-blue-600 transition-colors font-medium shadow-sm">
-                            Dashboard
+                            {{ __('Dashboard') }}
                         </a>
                     @else
                         <a href="{{ route('login') }}" class="px-6 py-2 bg-tt-blue text-white rounded-lg hover:bg-tt-blue-600 transition-colors font-medium shadow-sm">
-                            Connexion
+                            {{ __('Login') }}
                         </a>
                     @endauth
                 </div>
@@ -68,23 +91,33 @@
         </div>
 
         <!-- Mobile menu -->
-        <div x-show="mobileMenuOpen" x-transition class="md:hidden border-t border-gray-200">
+        <div x-show="mobileMenuOpen" x-transition class="md:hidden border-t border-gray-200 dark:border-gray-700">
             <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('home') ? 'bg-tt-blue text-white' : 'text-gray-700 hover:bg-gray-100' }}">
-                    Accueil
+                <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('home') ? 'bg-tt-blue text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700' }}">
+                    {{ __('Home') }}
                 </a>
-                <a href="{{ route('coverage.public') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('coverage.public') ? 'bg-tt-blue text-white' : 'text-gray-700 hover:bg-gray-100' }}">
-                    Couverture
+                <a href="{{ route('coverage.public') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('coverage.public') ? 'bg-tt-blue text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700' }}">
+                    {{ __('Coverage') }}
                 </a>
                 @auth
-                    <a href="{{ route('dashboard') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">
-                        Dashboard
+                    <a href="{{ route('dashboard') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                        {{ __('Dashboard') }}
                     </a>
                 @else
-                    <a href="{{ route('login') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">
-                        Connexion
+                    <a href="{{ route('login') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                        {{ __('Login') }}
                     </a>
                 @endauth
+                
+                <!-- Mobile Language Switcher -->
+                <div class="flex items-center space-x-2 px-3 py-2">
+                    <a href="{{ route('language.switch', 'fr') }}" class="px-3 py-1 rounded {{ app()->getLocale() == 'fr' ? 'bg-tt-blue text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700' }}">
+                        FR
+                    </a>
+                    <a href="{{ route('language.switch', 'en') }}" class="px-3 py-1 rounded {{ app()->getLocale() == 'en' ? 'bg-tt-blue text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700' }}">
+                        EN
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
@@ -115,24 +148,24 @@
 
                 <!-- Links -->
                 <div>
-                    <h3 class="font-semibold mb-4">Liens Rapides</h3>
+                    <h3 class="font-semibold mb-4">{{ __('Quick Links') }}</h3>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="{{ route('home') }}" class="hover:text-tt-blue transition-colors">Accueil</a></li>
-                        <li><a href="{{ route('coverage.public') }}" class="hover:text-tt-blue transition-colors">Vérifier la Couverture</a></li>
+                        <li><a href="{{ route('home') }}" class="hover:text-tt-blue transition-colors">{{ __('Home') }}</a></li>
+                        <li><a href="{{ route('coverage.public') }}" class="hover:text-tt-blue transition-colors">{{ __('Coverage') }}</a></li>
                         @auth
-                            <li><a href="{{ route('dashboard') }}" class="hover:text-tt-blue transition-colors">Dashboard</a></li>
+                            <li><a href="{{ route('dashboard') }}" class="hover:text-tt-blue transition-colors">{{ __('Dashboard') }}</a></li>
                         @endauth
                     </ul>
                 </div>
 
                 <!-- Contact -->
                 <div>
-                    <h3 class="font-semibold mb-4">Informations</h3>
+                    <h3 class="font-semibold mb-4">{{ __('Information') }}</h3>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li>À propos</li>
-                        <li>Contact</li>
-                        <li>Conditions d'utilisation</li>
-                        <li>Politique de confidentialité</li>
+                        <li>{{ __('About') }}</li>
+                        <li>{{ __('Contact') }}</li>
+                        <li>{{ __('Terms of Use') }}</li>
+                        <li>{{ __('Privacy Policy') }}</li>
                     </ul>
                 </div>
             </div>
@@ -144,5 +177,18 @@
     </footer>
 
     @stack('scripts')
+    
+    <!-- Dark Mode Script -->
+    <script>
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+        }
+
+        // Load dark mode preference on page load
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
 </body>
 </html>
