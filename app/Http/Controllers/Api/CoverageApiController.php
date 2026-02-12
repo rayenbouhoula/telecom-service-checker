@@ -24,13 +24,14 @@ class CoverageApiController extends Controller
         ]);
 
         $governorate = $validated['governorate'];
+        $serviceType = $validated['service_type'] ?? null;
         
-        // Try cache first (5 min)
-        $cacheKey = "coverage_{$governorate}";
+        // Try cache first (5 min) - include service type in cache key
+        $cacheKey = "coverage_{$governorate}_" . ($serviceType ?? 'all');
         
-        $result = Cache::remember($cacheKey, 300, function () use ($governorate, $validated) {
+        $result = Cache::remember($cacheKey, 300, function () use ($governorate, $serviceType) {
             // Call Tunisie Telecom API (or use mock data)
-            return $this->fetchCoverageData($governorate, $validated['service_type'] ?? null);
+            return $this->fetchCoverageData($governorate, $serviceType);
         });
 
         // Save to history
