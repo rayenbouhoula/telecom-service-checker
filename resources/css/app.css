@@ -1,23 +1,79 @@
-/* Custom CSS for Telecom Service Checker */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tunisie Telecom Custom Styles */
 
 /* Color Variables */
 :root {
-    --primary: #3b82f6;
+    --tt-red: #E30613;
+    --tt-red-dark: #B80510;
+    --tt-red-light: #FFE5E7;
     --success: #10b981;
     --warning: #f59e0b;
     --danger: #ef4444;
-    --dark: #1f2937;
-    --light: #f9fafb;
+    --dark: #2D2D2D;
+    --light: #F8F9FA;
 }
 
 /* Global Styles */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Smooth transitions */
+.transition-all {
+    transition: all 0.3s ease;
+}
+
+/* Hover effects */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(227, 6, 19, 0.2);
+}
+
+/* TT Red gradient */
+.bg-tt-gradient {
+    background: linear-gradient(135deg, #E30613 0%, #B80510 100%);
+}
+
+/* Pulse animation for loading */
+@keyframes pulse-red {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.pulse-red {
+    animation: pulse-red 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 /* Hero Section */
 .hero-gradient {
-    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    background: linear-gradient(135deg, #E30613 0%, #B80510 100%);
 }
 
 /* Card Hover Effects */
@@ -27,7 +83,7 @@ body {
 
 .card-hover:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 25px rgba(227, 6, 19, 0.15);
 }
 
 /* Status Badges */
@@ -54,57 +110,24 @@ body {
 }
 
 .service-card:hover {
-    border-color: var(--primary);
+    border-color: var(--tt-red);
     transform: scale(1.02);
-    box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 5px 15px rgba(227, 6, 19, 0.3);
 }
 
 .service-card.selected {
-    border-color: var(--primary);
-    background-color: rgba(59, 130, 246, 0.1);
+    border-color: var(--tt-red);
+    background-color: rgba(227, 6, 19, 0.1);
 }
 
 .service-icon {
     font-size: 3rem;
-    color: var(--primary);
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.fade-in {
-    animation: fadeIn 0.5s ease-in-out;
-}
-
-/* Sidebar */
-.sidebar {
-    min-height: calc(100vh - 56px);
-    background-color: #1f2937;
-}
-
-.sidebar .nav-link {
-    color: rgba(255, 255, 255, 0.7);
-    transition: all 0.3s ease;
-}
-
-.sidebar .nav-link:hover,
-.sidebar .nav-link.active {
-    color: white;
-    background-color: rgba(59, 130, 246, 0.2);
+    color: var(--tt-red);
 }
 
 /* Statistics Cards */
 .stat-card {
-    border-left: 4px solid var(--primary);
+    border-left: 4px solid var(--tt-red);
 }
 
 .stat-card.success {
