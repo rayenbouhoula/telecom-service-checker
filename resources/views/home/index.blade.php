@@ -6,7 +6,13 @@
     <div class="container py-5">
         <div class="row align-items-center">
             <div class="col-lg-8 mx-auto text-center text-white">
-                <h1 class="display-3 fw-bold mb-4">Check Telecom Service Availability</h1>
+                @if(file_exists(public_path('images/tunisie-telecom-logo.png')))
+                    <img src="{{ asset('images/tunisie-telecom-logo.png') }}" 
+                         alt="Tunisie Telecom" 
+                         class="mb-4" 
+                         style="max-height: 80px; filter: brightness(0) invert(1);">
+                @endif
+                <h1 class="display-3 fw-bold mb-4">Tunisie Telecom Service Checker</h1>
                 <p class="lead mb-5">Find out if your favorite telecom services are available in your area. Real-time status updates for internet, mobile, TV, and phone services.</p>
                 <a href="{{ route('check.index') }}" class="btn btn-light btn-lg px-5 py-3 shadow-lg">
                     <i class="bi bi-search me-2"></i>Check Availability Now
@@ -20,7 +26,7 @@
 <section class="py-5 bg-light">
     <div class="container py-5">
         <div class="text-center mb-5">
-            <h2 class="display-5 fw-bold">Why Choose TelecomCheck?</h2>
+            <h2 class="display-5 fw-bold">Why Choose Tunisie Telecom?</h2>
             <p class="lead text-muted">Everything you need to find the right telecom service</p>
         </div>
         <div class="row g-4">

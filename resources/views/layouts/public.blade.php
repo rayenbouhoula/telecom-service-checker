@@ -20,9 +20,17 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div class="container">
-            <a class="navbar-brand fw-bold text-primary" href="{{ route('home') }}">
-                <i class="bi bi-broadcast-pin fs-4"></i>
-                TelecomCheck
+            <a class="navbar-brand fw-bold text-primary d-flex align-items-center" href="{{ route('home') }}">
+                @if(file_exists(public_path('images/tunisie-telecom-logo.png')))
+                    <img src="{{ asset('images/tunisie-telecom-logo.png') }}" 
+                         alt="Tunisie Telecom" 
+                         height="40" 
+                         class="me-2">
+                    <span>Tunisie Telecom</span>
+                @else
+                    <i class="bi bi-broadcast-pin fs-4"></i>
+                    Tunisie Telecom
+                @endif
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -58,13 +66,20 @@
             <div class="row">
                 <div class="col-md-6">
                     <h5 class="fw-bold">
-                        <i class="bi bi-broadcast-pin"></i>
-                        TelecomCheck
+                        @if(file_exists(public_path('images/tunisie-telecom-logo.png')))
+                            <img src="{{ asset('images/tunisie-telecom-logo.png') }}" 
+                                 alt="Tunisie Telecom" 
+                                 height="30" 
+                                 class="me-2">
+                        @else
+                            <i class="bi bi-broadcast-pin"></i>
+                        @endif
+                        Tunisie Telecom
                     </h5>
                     <p class="text-muted mb-0">Check telecom service availability in your area.</p>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <p class="text-muted mb-0">&copy; {{ date('Y') }} TelecomCheck. All rights reserved.</p>
+                    <p class="text-muted mb-0">&copy; {{ date('Y') }} Tunisie Telecom. All rights reserved.</p>
                 </div>
             </div>
         </div>
