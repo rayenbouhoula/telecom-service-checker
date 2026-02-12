@@ -51,7 +51,11 @@ jobs:
       - name: Install Node dependencies
         run: npm ci
 
+      copilot/fix-test-workflow-issues
       - name: Build Vite assets
+=======
+      - name: Build assets
+      main
         run: npm run build
 
       - name: Execute tests
