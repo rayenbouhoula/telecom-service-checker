@@ -79,11 +79,23 @@
     @stack('styles')
 </head>
 <body>
+    @php
+        $logoExists = file_exists(public_path('images/tunisie-telecom-logo.png'));
+    @endphp
+    
     <!-- Top Navbar -->
     <nav class="navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ route('admin.dashboard') }}">
-                <i class="bi bi-telephone-fill"></i> TelecomCheck Admin
+            <a class="navbar-brand d-flex align-items-center" href="{{ route('admin.dashboard') }}">
+                @if($logoExists)
+                    <img src="{{ asset('images/tunisie-telecom-logo.png') }}" 
+                         alt="Tunisie Telecom" 
+                         height="40" 
+                         class="me-2">
+                @else
+                    <i class="bi bi-telephone-fill me-2"></i>
+                @endif
+                <span>Tunisie Telecom Admin</span>
             </a>
             <div class="d-flex">
                 <div class="dropdown">
@@ -115,7 +127,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.services.*') ? 'active' : '' }}" href="{{ route('admin.services.index') }}">
+                    <a class="nav-link {{ request()->routeIs('admin.service-availability.*') ? 'active' : '' }}" href="{{ route('admin.service-availability.index') }}">
                         <i class="bi bi-broadcast-pin"></i> Service Availability
                     </a>
                 </li>
@@ -130,7 +142,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('admin.history.*') ? 'active' : '' }}" href="{{ route('admin.history.index') }}">
+                    <a class="nav-link {{ request()->routeIs('admin.status-history.*') ? 'active' : '' }}" href="{{ route('admin.status-history.index') }}">
                         <i class="bi bi-clock-history"></i> Status History
                     </a>
                 </li>

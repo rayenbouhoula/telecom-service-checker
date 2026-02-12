@@ -20,10 +20,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     
     // Service Availability routes
-    Route::get('/services/export', [ServiceAvailabilityController::class, 'export'])->name('services.export');
-    Route::post('/services/quick-update', [ServiceAvailabilityController::class, 'quickUpdate'])->name('services.quick-update');
-    Route::post('/services/bulk-update', [ServiceAvailabilityController::class, 'bulkUpdate'])->name('services.bulk-update');
-    Route::resource('services', ServiceAvailabilityController::class);
+    Route::get('/service-availability/export', [ServiceAvailabilityController::class, 'export'])->name('service-availability.export');
+    Route::post('/service-availability/quick-update', [ServiceAvailabilityController::class, 'quickUpdate'])->name('service-availability.quick-update');
+    Route::post('/service-availability/bulk-update', [ServiceAvailabilityController::class, 'bulkUpdate'])->name('service-availability.bulk-update');
+    Route::resource('service-availability', ServiceAvailabilityController::class);
     
     // Area routes
     Route::resource('areas', AreaController::class);
@@ -32,8 +32,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::resource('service-types', ServiceTypeController::class);
     
     // Status History routes
-    Route::get('/history', [StatusHistoryController::class, 'index'])->name('history.index');
-    Route::get('/history/export', [StatusHistoryController::class, 'export'])->name('history.export');
+    Route::get('/status-history', [StatusHistoryController::class, 'index'])->name('status-history.index');
+    Route::get('/status-history/export', [StatusHistoryController::class, 'export'])->name('status-history.export');
 });
 
 // Profile routes
