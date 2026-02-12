@@ -49,6 +49,11 @@ Route::middleware('auth')->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+// Coverage checker public route
+Route::get('/coverage-checker', function () {
+    return view('coverage.checker');
+})->name('coverage.checker');
+
 // Admin Coverage Checker route (keep auth for admin version)
 Route::middleware('auth')->get('/admin/coverage', function () {
     return view('coverage.index');
