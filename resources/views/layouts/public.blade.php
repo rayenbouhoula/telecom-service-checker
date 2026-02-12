@@ -26,9 +26,11 @@
                 <!-- Logo Section - FIXED SIZE -->
                 <div class="flex items-center">
                     <a href="{{ route('home') }}" class="flex items-center space-x-3">
-                        <img src="{{ asset('images/tt-logo.svg') }}" alt="Tunisie Telecom" class="h-12 w-auto">
-                        <div class="border-l-2 border-tt-blue pl-3 hidden sm:block">
-                            <div class="text-lg font-bold text-tt-blue">Service Checker</div>
+                        <div class="h-12 w-12 bg-tt-blue rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">TT</span>
+                        </div>
+                        <div class="border-l-2 border-tt-blue pl-3">
+                            <div class="text-lg font-bold text-tt-blue">Tunisie Telecom</div>
                             <div class="text-xs text-gray-500">Vérification de Couverture</div>
                         </div>
                     </a>

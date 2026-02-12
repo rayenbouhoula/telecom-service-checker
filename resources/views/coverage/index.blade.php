@@ -4,7 +4,9 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('Coverage Checker') }}
             </h2>
-            <img src="{{ asset('images/tt-logo.svg') }}" alt="Tunisie Telecom" class="h-12">
+            <div class="h-12 w-12 bg-tt-blue rounded-lg flex items-center justify-center">
+                <span class="text-white font-bold text-xl">TT</span>
+            </div>
         </div>
     </x-slot>
 
