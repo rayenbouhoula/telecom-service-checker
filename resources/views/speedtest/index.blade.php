@@ -88,12 +88,18 @@
         .then(response => response.json())
         .then(data => {
             document.getElementById('ipAddress').textContent = data.ip;
+        })
+        .catch(error => {
+            console.error('Failed to fetch IP:', error);
+            document.getElementById('ipAddress').textContent = 'Unavailable';
         });
     
     // Detect network type
     const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    if (connection) {
-        document.getElementById('networkType').textContent = connection.effectiveType || 'Unknown';
+    if (connection && connection.effectiveType) {
+        document.getElementById('networkType').textContent = connection.effectiveType;
+    } else {
+        document.getElementById('networkType').textContent = 'Unknown';
     }
     
     function startSpeedTest() {

@@ -89,7 +89,7 @@
                         <button onclick="document.getElementById('loginModal').classList.remove('hidden')" class="px-6 py-2 bg-tt-blue text-white rounded-lg hover:bg-tt-blue-600 transition-colors font-medium shadow-sm">
                             {{ __('Login') }}
                         </button>
-                    @endguest
+                    @endauth
                 </div>
 
                 <!-- Mobile menu button -->
