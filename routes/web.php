@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AvailabilityCheckController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\SpeedTestController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ServiceAvailabilityController;
 use App\Http\Controllers\Admin\AreaController;
@@ -19,6 +20,8 @@ Route::get('/', function () {
 Route::get('/coverage', function () {
     return view('coverage.public');
 })->name('coverage.public');
+
+Route::get('/speed-test', [SpeedTestController::class, 'index'])->name('speedtest');
 
 // Language switcher route
 Route::get('/language/{locale}', [LanguageController::class, 'switch'])->name('language.switch');

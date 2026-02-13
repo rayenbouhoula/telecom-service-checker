@@ -84,57 +84,34 @@
     </div>
 </div>
 
-<!-- Coverage Checker Preview Section -->
-<div class="py-20 bg-white dark:bg-gray-800">
+<!-- Speed Test Preview Section -->
+<div class="py-20 bg-white dark:bg-gray-900">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                Vérification Rapide
+                {{ __('Quick Speed Test') }}
             </h2>
             <p class="text-xl text-gray-600 dark:text-gray-400">
-                Sélectionnez votre gouvernorat pour vérifier la couverture
+                {{ __('Test your internet connection speed') }}
             </p>
         </div>
 
-        <div class="bg-gradient-to-br from-gray-50 to-white rounded-2xl shadow-xl p-8 md:p-12 border border-gray-200">
-            <form action="{{ route('coverage.public') }}" method="GET" class="space-y-6">
-                <div>
-                    <label for="governorate" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                        Sélectionnez votre Gouvernorat
-                    </label>
-                    <select id="governorate" name="governorate" class="w-full rounded-lg border-gray-300 shadow-sm focus:border-tt-blue focus:ring-tt-blue text-lg py-3">
-                        <option value="">-- Choisir un gouvernorat --</option>
-                        <option value="Tunis">Tunis</option>
-                        <option value="Ariana">Ariana</option>
-                        <option value="Ben Arous">Ben Arous</option>
-                        <option value="Manouba">Manouba</option>
-                        <option value="Nabeul">Nabeul</option>
-                        <option value="Zaghouan">Zaghouan</option>
-                        <option value="Bizerte">Bizerte</option>
-                        <option value="Béja">Béja</option>
-                        <option value="Jendouba">Jendouba</option>
-                        <option value="Kef">Kef</option>
-                        <option value="Siliana">Siliana</option>
-                        <option value="Sousse">Sousse</option>
-                        <option value="Monastir">Monastir</option>
-                        <option value="Mahdia">Mahdia</option>
-                        <option value="Sfax">Sfax</option>
-                        <option value="Kairouan">Kairouan</option>
-                        <option value="Kasserine">Kasserine</option>
-                        <option value="Sidi Bouzid">Sidi Bouzid</option>
-                        <option value="Gabès">Gabès</option>
-                        <option value="Medenine">Medenine</option>
-                        <option value="Tataouine">Tataouine</option>
-                        <option value="Gafsa">Gafsa</option>
-                        <option value="Tozeur">Tozeur</option>
-                        <option value="Kebili">Kebili</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="w-full bg-tt-blue text-white py-4 px-6 rounded-lg font-bold text-lg hover:bg-tt-blue-600 transition-all transform hover:scale-105 shadow-lg">
-                    {{ __('Check Coverage Now') }}
-                </button>
-            </form>
+        <div class="bg-gradient-to-br from-gray-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow-xl p-8 md:p-12 border border-gray-200 dark:border-gray-700 text-center">
+            <svg class="w-24 h-24 mx-auto text-tt-blue mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+            
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                {{ __('Test Your Connection Speed') }}
+            </h3>
+            
+            <p class="text-gray-600 dark:text-gray-400 mb-8">
+                {{ __('Measure your download and upload speeds, check your ping, and access router settings') }}
+            </p>
+            
+            <a href="{{ route('speedtest') }}" class="inline-block bg-tt-blue text-white py-4 px-8 rounded-lg font-bold text-lg hover:bg-tt-blue-600 transition-all transform hover:scale-105 shadow-lg">
+                {{ __('Start Speed Test') }}
+            </a>
         </div>
     </div>
 </div>
@@ -167,13 +144,13 @@
 <div class="bg-gradient-to-br from-tt-blue to-tt-blue-700 text-white py-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 class="text-3xl md:text-4xl font-bold mb-6">
-            Prêt à vérifier votre couverture?
+            {{ __('Ready to check your coverage?') }}
         </h2>
         <p class="text-xl mb-8 text-blue-100">
-            Découvrez maintenant les services disponibles dans votre région
+            {{ __('Discover available services in your region now') }}
         </p>
-        <a href="{{ route('coverage.public') }}" class="inline-block bg-white dark:bg-gray-800 text-tt-blue px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-50 dark:bg-gray-900 transition-all transform hover:scale-105 shadow-lg">
-            Commencer la Vérification
+        <a href="{{ route('coverage.public') }}" class="inline-block bg-white text-tt-blue px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-50 transition-all transform hover:scale-105 shadow-lg">
+            {{ __('Start Verification') }}
         </a>
     </div>
 </div>

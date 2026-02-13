@@ -15,6 +15,20 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     
+    <script>
+        // Apply dark mode IMMEDIATELY
+        (function() {
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+        
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+        }
+    </script>
+    
     @stack('styles')
     
     <!-- AlpineJS -->
@@ -72,10 +86,10 @@
                             {{ __('Dashboard') }}
                         </a>
                     @else
-                        <a href="{{ route('login') }}" class="px-6 py-2 bg-tt-blue text-white rounded-lg hover:bg-tt-blue-600 transition-colors font-medium shadow-sm">
+                        <button onclick="document.getElementById('loginModal').classList.remove('hidden')" class="px-6 py-2 bg-tt-blue text-white rounded-lg hover:bg-tt-blue-600 transition-colors font-medium shadow-sm">
                             {{ __('Login') }}
-                        </a>
-                    @endauth
+                        </button>
+                    @endguest
                 </div>
 
                 <!-- Mobile menu button -->
@@ -178,17 +192,35 @@
 
     @stack('scripts')
     
-    <!-- Dark Mode Script -->
-    <script>
-        function toggleDarkMode() {
-            document.documentElement.classList.toggle('dark');
-            localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
-        }
-
-        // Load dark mode preference on page load
-        if (localStorage.getItem('darkMode') === 'true') {
-            document.documentElement.classList.add('dark');
-        }
-    </script>
+    <!-- Login Modal -->
+    <div id="loginModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 z-50 flex items-center justify-center">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">{{ __('Admin Login') }}</h2>
+                <button onclick="document.getElementById('loginModal').classList.add('hidden')" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('Email') }}</label>
+                    <input type="email" id="email" name="email" required class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:border-tt-blue focus:ring-tt-blue">
+                </div>
+                
+                <div class="mb-6">
+                    <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('Password') }}</label>
+                    <input type="password" id="password" name="password" required class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:border-tt-blue focus:ring-tt-blue">
+                </div>
+                
+                <button type="submit" class="w-full bg-tt-blue text-white py-3 rounded-lg hover:bg-tt-blue-600 font-semibold transition-colors">
+                    {{ __('Login') }}
+                </button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
