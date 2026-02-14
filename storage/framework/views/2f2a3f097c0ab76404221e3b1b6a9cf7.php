@@ -33,6 +33,12 @@
     
     <!-- AlpineJS -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <title><?php echo e(config('app.name', 'Tunisie Telecom - Vérification de Couverture')); ?></title>
+
+    <!-- Add these favicon lines -->
+    <link rel="icon" type="image/png" href="<?php echo e(asset('images/favicon.png')); ?>">
+    <link rel="shortcut icon" type="image/png" href="<?php echo e(asset('images/favicon.png')); ?>">
+    <link rel="apple-touch-icon" href="<?php echo e(asset('images/favicon.png')); ?>">
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 antialiased">
     <!-- Navbar -->
