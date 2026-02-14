@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
-    <title>{{ config('app.name', 'Tunisie Telecom - Vérification de Couverture') }}</title>
+    <title><?php echo e(config('app.name', 'Tunisie Telecom - Vérification de Couverture')); ?></title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <?php echo app('Illuminate\Foundation\Vite')(['resources/css/app.css', 'resources/js/app.js']); ?>
     
     <script>
         // Apply dark mode IMMEDIATELY
@@ -29,7 +29,7 @@
         }
     </script>
     
-    @stack('styles')
+    <?php echo $__env->yieldPushContent('styles'); ?>
     
     <!-- AlpineJS -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -41,24 +41,26 @@
             <div class="flex justify-between h-20">
                 <!-- Logo Section -->
                 <div class="flex items-center">
-                    <a href="{{ route('home') }}" class="flex items-center space-x-3">
-                        <img src="{{ asset('images/tt-logo.png') }}" 
+                    <a href="<?php echo e(route('home')); ?>" class="flex items-center space-x-3">
+                        <img src="<?php echo e(asset('images/tt-logo.png')); ?>" 
                              alt="Tunisie Telecom" 
                              class="h-12 w-auto">
                         <div class="border-l-2 border-tt-blue pl-3">
                             <div class="text-lg font-bold text-tt-blue">Tunisie Telecom</div>
-                            <div class="text-xs text-gray-500 dark:text-gray-400">{{ __('Coverage Checker') }}</div>
+                            <div class="text-xs text-gray-500 dark:text-gray-400"><?php echo e(__('Coverage Checker')); ?></div>
                         </div>
                     </a>
                 </div>
 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="{{ route('home') }}" class="text-gray-700 dark:text-gray-300 hover:text-tt-blue font-medium transition-colors {{ request()->routeIs('home') ? 'text-tt-blue border-b-2 border-tt-blue' : '' }} pb-1">
-                        {{ __('Home') }}
+                    <a href="<?php echo e(route('home')); ?>" class="text-gray-700 dark:text-gray-300 hover:text-tt-blue font-medium transition-colors <?php echo e(request()->routeIs('home') ? 'text-tt-blue border-b-2 border-tt-blue' : ''); ?> pb-1">
+                        <?php echo e(__('Home')); ?>
+
                     </a>
-                    <a href="{{ route('coverage.public') }}" class="text-gray-700 dark:text-gray-300 hover:text-tt-blue font-medium transition-colors {{ request()->routeIs('coverage.public') ? 'text-tt-blue border-b-2 border-tt-blue' : '' }} pb-1">
-                        {{ __('Coverage') }}
+                    <a href="<?php echo e(route('coverage.public')); ?>" class="text-gray-700 dark:text-gray-300 hover:text-tt-blue font-medium transition-colors <?php echo e(request()->routeIs('coverage.public') ? 'text-tt-blue border-b-2 border-tt-blue' : ''); ?> pb-1">
+                        <?php echo e(__('Coverage')); ?>
+
                     </a>
 
                     <!-- Dark Mode Toggle -->
@@ -73,23 +75,25 @@
 
                     <!-- Language Switcher -->
                     <div class="flex items-center space-x-2">
-                        <a href="{{ route('language.switch', 'fr') }}" class="px-3 py-1 rounded {{ app()->getLocale() == 'fr' ? 'bg-tt-blue text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700' }}">
+                        <a href="<?php echo e(route('language.switch', 'fr')); ?>" class="px-3 py-1 rounded <?php echo e(app()->getLocale() == 'fr' ? 'bg-tt-blue text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'); ?>">
                             FR
                         </a>
-                        <a href="{{ route('language.switch', 'en') }}" class="px-3 py-1 rounded {{ app()->getLocale() == 'en' ? 'bg-tt-blue text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700' }}">
+                        <a href="<?php echo e(route('language.switch', 'en')); ?>" class="px-3 py-1 rounded <?php echo e(app()->getLocale() == 'en' ? 'bg-tt-blue text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'); ?>">
                             EN
                         </a>
                     </div>
 
-                    @auth
-                        <a href="{{ route('admin.dashboard') }}" class="px-6 py-2 bg-tt-blue text-white rounded-lg hover:bg-tt-blue-600 transition-colors font-medium shadow-sm">
-                            {{ __('Dashboard') }}
+                    <?php if(auth()->guard()->check()): ?>
+                        <a href="<?php echo e(route('admin.dashboard')); ?>" class="px-6 py-2 bg-tt-blue text-white rounded-lg hover:bg-tt-blue-600 transition-colors font-medium shadow-sm">
+                            <?php echo e(__('Dashboard')); ?>
+
                         </a>
-                    @else
-                        <a href="{{ route('login') }}" class="px-6 py-2 bg-tt-blue text-white rounded-lg hover:bg-tt-blue-600 transition-colors font-medium shadow-sm">
-                            {{ __('Login') }}
+                    <?php else: ?>
+                        <a href="<?php echo e(route('login')); ?>" class="px-6 py-2 bg-tt-blue text-white rounded-lg hover:bg-tt-blue-600 transition-colors font-medium shadow-sm">
+                            <?php echo e(__('Login')); ?>
+
                         </a>
-                    @endauth
+                    <?php endif; ?>
                 </div>
 
                 <!-- Mobile menu button -->
@@ -107,28 +111,32 @@
         <!-- Mobile menu -->
         <div x-show="mobileMenuOpen" x-transition class="md:hidden border-t border-gray-200 dark:border-gray-700">
             <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('home') ? 'bg-tt-blue text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700' }}">
-                    {{ __('Home') }}
+                <a href="<?php echo e(route('home')); ?>" class="block px-3 py-2 rounded-md text-base font-medium <?php echo e(request()->routeIs('home') ? 'bg-tt-blue text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'); ?>">
+                    <?php echo e(__('Home')); ?>
+
                 </a>
-                <a href="{{ route('coverage.public') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('coverage.public') ? 'bg-tt-blue text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700' }}">
-                    {{ __('Coverage') }}
+                <a href="<?php echo e(route('coverage.public')); ?>" class="block px-3 py-2 rounded-md text-base font-medium <?php echo e(request()->routeIs('coverage.public') ? 'bg-tt-blue text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'); ?>">
+                    <?php echo e(__('Coverage')); ?>
+
                 </a>
-                @auth
-                    <a href="{{ route('admin.dashboard') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                        {{ __('Dashboard') }}
+                <?php if(auth()->guard()->check()): ?>
+                    <a href="<?php echo e(route('admin.dashboard')); ?>" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <?php echo e(__('Dashboard')); ?>
+
                     </a>
-                @else
-                    <a href="{{ route('login') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                        {{ __('Login') }}
+                <?php else: ?>
+                    <a href="<?php echo e(route('login')); ?>" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                        <?php echo e(__('Login')); ?>
+
                     </a>
-                @endauth
+                <?php endif; ?>
                 
                 <!-- Mobile Language Switcher -->
                 <div class="flex items-center space-x-2 px-3 py-2">
-                    <a href="{{ route('language.switch', 'fr') }}" class="px-3 py-1 rounded {{ app()->getLocale() == 'fr' ? 'bg-tt-blue text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700' }}">
+                    <a href="<?php echo e(route('language.switch', 'fr')); ?>" class="px-3 py-1 rounded <?php echo e(app()->getLocale() == 'fr' ? 'bg-tt-blue text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'); ?>">
                         FR
                     </a>
-                    <a href="{{ route('language.switch', 'en') }}" class="px-3 py-1 rounded {{ app()->getLocale() == 'en' ? 'bg-tt-blue text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700' }}">
+                    <a href="<?php echo e(route('language.switch', 'en')); ?>" class="px-3 py-1 rounded <?php echo e(app()->getLocale() == 'en' ? 'bg-tt-blue text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'); ?>">
                         EN
                     </a>
                 </div>
@@ -138,7 +146,7 @@
 
     <!-- Main Content -->
     <main class="min-h-screen">
-        @yield('content')
+        <?php echo $__env->yieldContent('content'); ?>
     </main>
 
     <!-- Footer -->
@@ -156,40 +164,41 @@
                         <span class="text-xl font-bold">Tunisie Telecom</span>
                     </div>
                     <p class="text-gray-400 text-sm">
-                        {{ __('Check the availability of our services in your region.') }}
+                        <?php echo e(__('Check the availability of our services in your region.')); ?>
+
                     </p>
                 </div>
 
                 <!-- Links -->
                 <div>
-                    <h3 class="font-semibold mb-4">{{ __('Quick Links') }}</h3>
+                    <h3 class="font-semibold mb-4"><?php echo e(__('Quick Links')); ?></h3>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="{{ route('home') }}" class="hover:text-tt-blue transition-colors">{{ __('Home') }}</a></li>
-                        <li><a href="{{ route('coverage.public') }}" class="hover:text-tt-blue transition-colors">{{ __('Coverage') }}</a></li>
-                        @auth
-                            <li><a href="{{ route('admin.dashboard') }}" class="hover:text-tt-blue transition-colors">{{ __('Dashboard') }}</a></li>
-                        @endauth
+                        <li><a href="<?php echo e(route('home')); ?>" class="hover:text-tt-blue transition-colors"><?php echo e(__('Home')); ?></a></li>
+                        <li><a href="<?php echo e(route('coverage.public')); ?>" class="hover:text-tt-blue transition-colors"><?php echo e(__('Coverage')); ?></a></li>
+                        <?php if(auth()->guard()->check()): ?>
+                            <li><a href="<?php echo e(route('admin.dashboard')); ?>" class="hover:text-tt-blue transition-colors"><?php echo e(__('Dashboard')); ?></a></li>
+                        <?php endif; ?>
                     </ul>
                 </div>
 
                 <!-- Contact -->
                 <div>
-                    <h3 class="font-semibold mb-4">{{ __('Information') }}</h3>
+                    <h3 class="font-semibold mb-4"><?php echo e(__('Information')); ?></h3>
                     <ul class="space-y-2 text-sm text-gray-400">
-                        <li>{{ __('About') }}</li>
-                        <li>{{ __('Contact') }}</li>
-                        <li>{{ __('Terms of Use') }}</li>
-                        <li>{{ __('Privacy Policy') }}</li>
+                        <li><?php echo e(__('About')); ?></li>
+                        <li><?php echo e(__('Contact')); ?></li>
+                        <li><?php echo e(__('Terms of Use')); ?></li>
+                        <li><?php echo e(__('Privacy Policy')); ?></li>
                     </ul>
                 </div>
             </div>
 
             <div class="border-t border-gray-700 dark:border-gray-600 mt-8 pt-8 text-center text-sm text-gray-400 dark:text-gray-300">
-                <p>&copy; {{ date('Y') }} Tunisie Telecom. {{ __('All rights reserved') }}</p>
+                <p>&copy; <?php echo e(date('Y')); ?> Tunisie Telecom. <?php echo e(__('All rights reserved')); ?></p>
             </div>
         </div>
     </footer>
 
-    @stack('scripts')
+    <?php echo $__env->yieldPushContent('scripts'); ?>
 </body>
-</html>
+</html><?php /**PATH C:\Users\MAISON INFO\telecom-service-checker\resources\views/layouts/public.blade.php ENDPATH**/ ?>

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('service_availability', function (Blueprint $table) {
+        Schema::create('service_availabilities', function (Blueprint $table) {
             $table->id();
             $table->foreignId('area_id')->constrained()->onDelete('cascade');
             $table->foreignId('service_type_id')->constrained()->onDelete('cascade');
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('service_availability');
+        Schema::dropIfExists('service_availabilities');
     }
 };

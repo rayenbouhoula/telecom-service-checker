@@ -14,7 +14,7 @@ class ServiceAvailability extends Model
      *
      * @var string
      */
-    protected $table = 'service_availability';
+    protected $table = 'service_availabilities';
 
     /**
      * The attributes that are mass assignable.

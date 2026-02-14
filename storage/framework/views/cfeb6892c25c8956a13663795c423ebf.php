@@ -1,13 +1,11 @@
-@extends('layouts.public')
-
-@push('styles')
+<?php $__env->startPush('styles'); ?>
 <!-- Leaflet CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
       integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" 
       crossorigin=""/>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <!-- Hero Section with Tunisia Map Background -->
 <div class="relative bg-gradient-to-br from-tt-blue to-tt-blue-700 text-white py-16 dark:from-tt-blue-600 dark:to-tt-blue-900">
     <div class="absolute inset-0 opacity-10">
@@ -15,10 +13,12 @@
     </div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">
-            {{ __('Coverage Verification') }}
+            <?php echo e(__('Coverage Verification')); ?>
+
         </h1>
         <p class="text-xl text-white/90">
-            {{ __('Discover service availability in your region') }}
+            <?php echo e(__('Discover service availability in your region')); ?>
+
         </p>
     </div>
 </div>
@@ -30,7 +30,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
             <!-- Left: Coverage Checker Card -->
             <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
-                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">{{ __('Check Coverage') }}</h2>
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6"><?php echo e(__('Check Coverage')); ?></h2>
             
             <div id="coverage-checker" class="space-y-6">
                 
@@ -41,11 +41,12 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
-                        {{ __('Select your Governorate') }}
+                        <?php echo e(__('Select your Governorate')); ?>
+
                     </label>
                     <select id="governorate-select" 
                             class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-tt-blue focus:ring-tt-blue text-lg py-3">
-                        <option value="">{{ __('-- Choose a governorate --') }}</option>
+                        <option value=""><?php echo e(__('-- Choose a governorate --')); ?></option>
                     </select>
                 </div>
 
@@ -55,11 +56,12 @@
                         <svg class="inline-block w-5 h-5 mr-1 text-tt-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
                         </svg>
-                        {{ __('Service Type (Optional)') }}
+                        <?php echo e(__('Service Type (Optional)')); ?>
+
                     </label>
                     <select id="service-type-select" 
                             class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-tt-blue focus:ring-tt-blue text-lg py-3">
-                        <option value="">{{ __('-- All Services --') }}</option>
+                        <option value=""><?php echo e(__('-- All Services --')); ?></option>
                     </select>
                 </div>
 
@@ -70,14 +72,15 @@
                         <svg class="inline-block w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                        {{ __('Check Coverage') }}
+                        <?php echo e(__('Check Coverage')); ?>
+
                     </button>
                 </div>
 
                 <!-- Loading Spinner -->
                 <div id="loading" class="hidden text-center py-12">
                     <div class="inline-block animate-spin rounded-full h-16 w-16 border-b-4 border-tt-blue"></div>
-                    <p class="mt-4 text-gray-600 dark:text-gray-400 font-medium">{{ __('Checking in progress...') }}</p>
+                    <p class="mt-4 text-gray-600 dark:text-gray-400 font-medium"><?php echo e(__('Checking in progress...')); ?></p>
                 </div>
 
                 <!-- Results Section -->
@@ -87,7 +90,8 @@
                             <svg class="w-6 h-6 mr-2 text-tt-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                             </svg>
-                            {{ __('Coverage Results') }}
+                            <?php echo e(__('Coverage Results')); ?>
+
                         </h3>
                         
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -97,7 +101,7 @@
                                     <svg class="w-5 h-5 text-tt-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                                     </svg>
-                                    <span class="text-sm text-gray-600 dark:text-gray-300 font-medium">{{ __('Signal Strength') }}</span>
+                                    <span class="text-sm text-gray-600 dark:text-gray-300 font-medium"><?php echo e(__('Signal Strength')); ?></span>
                                 </div>
                                 <div id="signal-strength" class="text-3xl font-bold text-tt-blue">--</div>
                             </div>
@@ -108,7 +112,7 @@
                                     <svg class="w-5 h-5 text-tt-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
                                     </svg>
-                                    <span class="text-sm text-gray-600 dark:text-gray-300 font-medium">{{ __('Network Type') }}</span>
+                                    <span class="text-sm text-gray-600 dark:text-gray-300 font-medium"><?php echo e(__('Network Type')); ?></span>
                                 </div>
                                 <div id="network-type" class="text-3xl font-bold text-tt-blue">--</div>
                             </div>
@@ -119,7 +123,7 @@
                                     <svg class="w-5 h-5 text-tt-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
                                     </svg>
-                                    <span class="text-sm text-gray-600 dark:text-gray-300 font-medium">{{ __('Download Speed') }}</span>
+                                    <span class="text-sm text-gray-600 dark:text-gray-300 font-medium"><?php echo e(__('Download Speed')); ?></span>
                                 </div>
                                 <div id="download-speed" class="text-2xl font-bold text-tt-blue">--</div>
                             </div>
@@ -130,7 +134,7 @@
                                     <svg class="w-5 h-5 text-tt-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                                     </svg>
-                                    <span class="text-sm text-gray-600 dark:text-gray-300 font-medium">{{ __('Upload Speed') }}</span>
+                                    <span class="text-sm text-gray-600 dark:text-gray-300 font-medium"><?php echo e(__('Upload Speed')); ?></span>
                                 </div>
                                 <div id="upload-speed" class="text-2xl font-bold text-tt-blue">--</div>
                             </div>
@@ -141,7 +145,7 @@
                                     <svg class="w-5 h-5 text-tt-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
-                                    <span class="text-sm text-gray-600 dark:text-gray-300 font-medium">{{ __('Latency') }}</span>
+                                    <span class="text-sm text-gray-600 dark:text-gray-300 font-medium"><?php echo e(__('Latency')); ?></span>
                                 </div>
                                 <div id="latency" class="text-2xl font-bold text-tt-blue">--</div>
                             </div>
@@ -152,7 +156,7 @@
                                     <svg class="w-5 h-5 text-tt-blue mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
-                                    <span class="text-sm text-gray-600 dark:text-gray-300 font-medium">{{ __('Status') }}</span>
+                                    <span class="text-sm text-gray-600 dark:text-gray-300 font-medium"><?php echo e(__('Status')); ?></span>
                                 </div>
                                 <div id="coverage-status" class="text-xl font-bold text-green-600">--</div>
                             </div>
@@ -165,14 +169,15 @@
 
         <!-- Right: Interactive Tunisia Map -->
         <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
-            <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">{{ __('Or Click on Map') }}</h3>
+            <h3 class="text-xl font-bold mb-4 text-gray-900 dark:text-white"><?php echo e(__('Or Click on Map')); ?></h3>
             <div id="tunisia-map" class="w-full h-96 rounded-lg shadow-lg mb-4"></div>
             <button onclick="detectLocation()" class="w-full bg-tt-blue text-white py-3 rounded-lg hover:bg-tt-blue-600 transition-colors flex items-center justify-center">
                 <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                 </svg>
-                {{ __('Detect My Location') }}
+                <?php echo e(__('Detect My Location')); ?>
+
             </button>
         </div>
     </div>
@@ -183,7 +188,8 @@
                 <svg class="w-6 h-6 mr-2 text-tt-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                {{ __('Recent Checks') }}
+                <?php echo e(__('Recent Checks')); ?>
+
             </h3>
             <div id="history-list" class="space-y-3">
                 <!-- History items will be inserted here -->
@@ -193,17 +199,17 @@
     </div>
 </div>
 
-@push('scripts')
+<?php $__env->startPush('scripts'); ?>
 <script>
     // Coverage Checker JavaScript
     const API_BASE = '/api/coverage';
     
     // Translations for status
     const statusTranslations = {
-        'excellent': "{{ __('Excellent') }}",
-        'good': "{{ __('Good') }}",
-        'fair': "{{ __('Fair') }}",
-        'poor': "{{ __('Poor') }}"
+        'excellent': "<?php echo e(__('Excellent')); ?>",
+        'good': "<?php echo e(__('Good')); ?>",
+        'fair': "<?php echo e(__('Fair')); ?>",
+        'poor': "<?php echo e(__('Poor')); ?>"
     };
     
     document.addEventListener('DOMContentLoaded', function() {
@@ -257,7 +263,7 @@
         const serviceType = document.getElementById('service-type-select').value;
         
         if (!governorate) {
-            alert('{{ __("Please select a governorate") }}');
+            alert('<?php echo e(__("Please select a governorate")); ?>');
             return;
         }
 
@@ -286,7 +292,7 @@
             }
         } catch (error) {
             console.error('Coverage check failed:', error);
-            alert('{{ __("Coverage check failed. Please try again.") }}');
+            alert('<?php echo e(__("Coverage check failed. Please try again.")); ?>');
         } finally {
             document.getElementById('loading').classList.add('hidden');
         }
@@ -334,7 +340,7 @@
                 historyList.innerHTML = '';
                 
                 if (result.data.length === 0) {
-                    historyList.innerHTML = '<p class="text-gray-500 dark:text-gray-400 text-center py-4">{{ __("No recent checks") }}</p>';
+                    historyList.innerHTML = '<p class="text-gray-500 dark:text-gray-400 text-center py-4"><?php echo e(__("No recent checks")); ?></p>';
                     return;
                 }
                 
@@ -413,7 +419,8 @@
                 <div class="text-center">
                     <b class="text-lg">${name}</b><br>
                     <button onclick="selectGovernorateFromMap('${name}')" class="mt-2 px-4 py-2 bg-tt-blue text-white rounded hover:bg-tt-blue-600">
-                        {{ __('Check Coverage') }}
+                        <?php echo e(__('Check Coverage')); ?>
+
                     </button>
                 </div>
             `);
@@ -441,7 +448,7 @@
     // Auto-detect location
     function detectLocation() {
         if (!navigator.geolocation) {
-            alert('{{ __("Geolocation is not supported by your browser") }}');
+            alert('<?php echo e(__("Geolocation is not supported by your browser")); ?>');
             return;
         }
 
@@ -461,20 +468,20 @@
                             var map = window.map || L.map('tunisia-map');
                             map.setView([lat, lon], 10);
                             L.marker([lat, lon]).addTo(map)
-                                .bindPopup('{{ __("Your Location") }}')
+                                .bindPopup('<?php echo e(__("Your Location")); ?>')
                                 .openPopup();
                         } else {
-                            alert('{{ __("Could not determine your governorate") }}');
+                            alert('<?php echo e(__("Could not determine your governorate")); ?>');
                         }
                     })
                     .catch(error => {
                         console.error('Geocoding error:', error);
-                        alert('{{ __("Failed to determine location") }}');
+                        alert('<?php echo e(__("Failed to determine location")); ?>');
                     });
             },
             function(error) {
                 console.error('Geolocation error:', error);
-                alert('{{ __("Failed to get your location") }}');
+                alert('<?php echo e(__("Failed to get your location")); ?>');
             }
         );
     }
@@ -484,5 +491,6 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" 
         crossorigin=""></script>
-@endpush
-@endsection
+<?php $__env->stopPush(); ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.public', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\MAISON INFO\telecom-service-checker\resources\views/coverage/public.blade.php ENDPATH**/ ?>
