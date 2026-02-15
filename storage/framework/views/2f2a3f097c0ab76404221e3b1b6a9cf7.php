@@ -60,14 +60,18 @@
 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="<?php echo e(route('home')); ?>" class="text-gray-700 dark:text-gray-300 hover:text-tt-blue font-medium transition-colors <?php echo e(request()->routeIs('home') ? 'text-tt-blue border-b-2 border-tt-blue' : ''); ?> pb-1">
-                        <?php echo e(__('Home')); ?>
+                  <a href="<?php echo e(route('home')); ?>" class="text-gray-700 dark:text-gray-300 hover:text-tt-blue font-medium transition-colors <?php echo e(request()->routeIs('home') ? 'text-tt-blue border-b-2 border-tt-blue' : ''); ?> pb-1">
+                       <?php echo e(__('Home')); ?>
 
-                    </a>
-                    <a href="<?php echo e(route('coverage.public')); ?>" class="text-gray-700 dark:text-gray-300 hover:text-tt-blue font-medium transition-colors <?php echo e(request()->routeIs('coverage.public') ? 'text-tt-blue border-b-2 border-tt-blue' : ''); ?> pb-1">
-                        <?php echo e(__('Coverage')); ?>
+                  </a>
+                  <a href="<?php echo e(route('coverage.public')); ?>" class="text-gray-700 dark:text-gray-300 hover:text-tt-blue font-medium transition-colors <?php echo e(request()->routeIs('coverage.public') ? 'text-tt-blue border-b-2 border-tt-blue' : ''); ?> pb-1">
+                       <?php echo e(__('Coverage')); ?>
 
-                    </a>
+                  </a>
+                  <a href="<?php echo e(route('speedtest')); ?>" class="text-gray-700 dark:text-gray-300 hover:text-tt-blue font-medium transition-colors <?php echo e(request()->routeIs('speedtest') ? 'text-tt-blue border-b-2 border-tt-blue' : ''); ?> pb-1">
+                       <?php echo e(__('Speed Test')); ?>
+
+                  </a>
 
                     <!-- Dark Mode Toggle -->
                     <button onclick="toggleDarkMode()" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300">
@@ -115,40 +119,52 @@
         </div>
 
         <!-- Mobile menu -->
-        <div x-show="mobileMenuOpen" x-transition class="md:hidden border-t border-gray-200 dark:border-gray-700">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="<?php echo e(route('home')); ?>" class="block px-3 py-2 rounded-md text-base font-medium <?php echo e(request()->routeIs('home') ? 'bg-tt-blue text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'); ?>">
-                    <?php echo e(__('Home')); ?>
+<div x-show="mobileMenuOpen" x-transition class="md:hidden border-t border-gray-200 dark:border-gray-700">
+    <div class="px-2 pt-2 pb-3 space-y-1">
+        <a href="<?php echo e(route('home')); ?>" class="block px-3 py-2 rounded-md text-base font-medium <?php echo e(request()->routeIs('home') ? 'bg-tt-blue text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'); ?>">
+            <?php echo e(__('Home')); ?>
 
-                </a>
-                <a href="<?php echo e(route('coverage.public')); ?>" class="block px-3 py-2 rounded-md text-base font-medium <?php echo e(request()->routeIs('coverage.public') ? 'bg-tt-blue text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'); ?>">
-                    <?php echo e(__('Coverage')); ?>
+        </a>
+        <a href="<?php echo e(route('coverage.public')); ?>" class="block px-3 py-2 rounded-md text-base font-medium <?php echo e(request()->routeIs('coverage.public') ? 'bg-tt-blue text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'); ?>">
+            <?php echo e(__('Coverage')); ?>
 
-                </a>
-                <?php if(auth()->guard()->check()): ?>
-                    <a href="<?php echo e(route('admin.dashboard')); ?>" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <?php echo e(__('Dashboard')); ?>
+        </a>
+        <a href="<?php echo e(route('speedtest')); ?>" class="block px-3 py-2 rounded-md text-base font-medium <?php echo e(request()->routeIs('speedtest') ? 'bg-tt-blue text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'); ?>">
+            <?php echo e(__('Speed Test')); ?>
 
-                    </a>
-                <?php else: ?>
-                    <a href="<?php echo e(route('login')); ?>" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <?php echo e(__('Login')); ?>
+        <?php if(auth()->guard()->check()): ?>
+            <a href="<?php echo e(route('admin.dashboard')); ?>" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <?php echo e(__('Dashboard')); ?>
 
-                    </a>
-                <?php endif; ?>
-                
-                <!-- Mobile Language Switcher -->
-                <div class="flex items-center space-x-2 px-3 py-2">
-                    <a href="<?php echo e(route('language.switch', 'fr')); ?>" class="px-3 py-1 rounded <?php echo e(app()->getLocale() == 'fr' ? 'bg-tt-blue text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'); ?>">
-                        FR
-                    </a>
-                    <a href="<?php echo e(route('language.switch', 'en')); ?>" class="px-3 py-1 rounded <?php echo e(app()->getLocale() == 'en' ? 'bg-tt-blue text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'); ?>">
-                        EN
-                    </a>
-                </div>
-            </div>
+            </a>
+        <?php else: ?>
+            <a href="<?php echo e(route('login')); ?>" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <?php echo e(__('Login')); ?>
+
+            </a>
+        <?php endif; ?>
+        
+        <!-- Mobile Language & Dark Mode Switcher -->
+        <div class="flex items-center space-x-2 px-3 py-2">
+            <a href="<?php echo e(route('language.switch', 'fr')); ?>" class="px-3 py-1 rounded <?php echo e(app()->getLocale() == 'fr' ? 'bg-tt-blue text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'); ?>">
+                FR
+            </a>
+            <a href="<?php echo e(route('language.switch', 'en')); ?>" class="px-3 py-1 rounded <?php echo e(app()->getLocale() == 'en' ? 'bg-tt-blue text-white' : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'); ?>">
+                EN
+            </a>
+            
+            <!-- Dark Mode Toggle Button -->
+            <button onclick="toggleDarkMode()" class="px-3 py-1 rounded text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                </svg>
+                <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                </svg>
+            </button>
         </div>
-    </nav>
+    </div>
+</div>
 
     <!-- Main Content -->
     <main class="min-h-screen">
@@ -177,12 +193,13 @@
 
                 <!-- Links -->
                 <div>
-                    <h3 class="font-semibold mb-4"><?php echo e(__('Quick Links')); ?></h3>
-                    <ul class="space-y-2 text-sm text-gray-400">
+                    <h3 class="font-semibold mb-4 text-white dark:text-gray-200"><?php echo e(__('Quick Links')); ?></h3>
+                    <ul class="space-y-2 text-sm text-gray-400 dark:text-gray-300">
                         <li><a href="<?php echo e(route('home')); ?>" class="hover:text-tt-blue transition-colors"><?php echo e(__('Home')); ?></a></li>
                         <li><a href="<?php echo e(route('coverage.public')); ?>" class="hover:text-tt-blue transition-colors"><?php echo e(__('Coverage')); ?></a></li>
+                        <li><a href="<?php echo e(route('speedtest')); ?>" class="hover:text-tt-blue transition-colors"><?php echo e(__('Speed Test')); ?></a></li>
                         <?php if(auth()->guard()->check()): ?>
-                            <li><a href="<?php echo e(route('admin.dashboard')); ?>" class="hover:text-tt-blue transition-colors"><?php echo e(__('Dashboard')); ?></a></li>
+                             <li><a href="<?php echo e(route('admin.dashboard')); ?>" class="hover:text-tt-blue transition-colors"><?php echo e(__('Dashboard')); ?></a></li>
                         <?php endif; ?>
                     </ul>
                 </div>
@@ -200,7 +217,7 @@
             </div>
 
             <div class="border-t border-gray-700 dark:border-gray-600 mt-8 pt-8 text-center text-sm text-gray-400 dark:text-gray-300">
-                <p>&copy; <?php echo e(date('Y')); ?> Tunisie Telecom. <?php echo e(__('All rights reserved')); ?></p>
+                <p>&copy; <?php echo e(date('Y')); ?> Tunisie Telecom. <?php echo e(__('All rights reserved made by rayen bouhoula')); ?></p>
             </div>
         </div>
     </footer>

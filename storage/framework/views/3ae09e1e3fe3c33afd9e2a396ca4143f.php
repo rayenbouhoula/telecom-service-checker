@@ -98,26 +98,24 @@
                 <span>Tunisie Telecom Admin</span>
             </a>
             <div class="d-flex">
-                <div class="dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
-                        <i class="bi bi-person-circle"></i> <?php echo e(Auth::user()->name); ?>
+            <div class="dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+                    <i class="bi bi-person-circle"></i> <?php echo e(Auth::user()->name); ?>
 
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="<?php echo e(route('profile.edit')); ?>"><i class="bi bi-person"></i> Profile</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li>
-                            <form method="POST" action="<?php echo e(route('logout')); ?>">
-                                <?php echo csrf_field(); ?>
-                                <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Logout</button>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" style="position: fixed !important; z-index: 9999 !important;">
+                    <li><a class="dropdown-item" href="<?php echo e(route('profile.edit')); ?>"><i class="bi bi-person"></i> Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <form method="POST" action="<?php echo e(route('logout')); ?>">
+                            <?php echo csrf_field(); ?>
+                            <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Logout</button>
+                        </form>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
-
     <!-- Sidebar -->
     <nav class="sidebar col-md-3 col-lg-2 d-md-block">
         <div class="position-sticky">
