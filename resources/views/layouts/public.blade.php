@@ -182,12 +182,13 @@
 
                 <!-- Links -->
                 <div>
-                    <h3 class="font-semibold mb-4">{{ __('Quick Links') }}</h3>
-                    <ul class="space-y-2 text-sm text-gray-400">
+                    <h3 class="font-semibold mb-4 text-white dark:text-gray-200">{{ __('Quick Links') }}</h3>
+                    <ul class="space-y-2 text-sm text-gray-400 dark:text-gray-300">
                         <li><a href="{{ route('home') }}" class="hover:text-tt-blue transition-colors">{{ __('Home') }}</a></li>
                         <li><a href="{{ route('coverage.public') }}" class="hover:text-tt-blue transition-colors">{{ __('Coverage') }}</a></li>
+                        <li><a href="{{ route('speedtest') }}" class="hover:text-tt-blue transition-colors">{{ __('Speed Test') }}</a></li>
                         @auth
-                            <li><a href="{{ route('admin.dashboard') }}" class="hover:text-tt-blue transition-colors">{{ __('Dashboard') }}</a></li>
+                             <li><a href="{{ route('admin.dashboard') }}" class="hover:text-tt-blue transition-colors">{{ __('Dashboard') }}</a></li>
                         @endauth
                     </ul>
                 </div>
