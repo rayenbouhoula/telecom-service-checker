@@ -80,7 +80,7 @@
 </head>
 <body>
     @php
-        $logoExists = file_exists(public_path('images/tunisie-telecom-logo.png'));
+$logoExists = file_exists(public_path('images/tunisie-telecom-logo.png'));
     @endphp
     
     <!-- Top Navbar -->
@@ -98,23 +98,27 @@
                 <span>Tunisie Telecom Admin</span>
             </a>
             <div class="d-flex">
-            <div class="dropdown">
-                <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
-                    <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end" style="position: fixed !important; z-index: 9999 !important;">
-                    <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="bi bi-person"></i> Profile</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Logout</button>
-                        </form>
-                    </li>
-                </ul>
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" style="position: absolute; right: 0; left: auto; z-index: 9999;">
+                        <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="bi bi-person"></i> Profile</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
     </nav>
+
     <!-- Sidebar -->
     <nav class="sidebar col-md-3 col-lg-2 d-md-block">
         <div class="position-sticky">
