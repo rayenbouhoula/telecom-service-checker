@@ -191,7 +191,7 @@
             </div>
 
             <div class="border-t border-gray-700 dark:border-gray-600 mt-8 pt-8 text-center text-sm text-gray-400 dark:text-gray-300">
-                <p>&copy; {{ date('Y') }} Tunisie Telecom. {{ __('All rights reserved') }}</p>
+                <p>&copy; {{ date('Y') }} Tunisie Telecom. {{ __('All rights reserved made by rayen bouhoula') }}</p>
             </div>
         </div>
     </footer>
