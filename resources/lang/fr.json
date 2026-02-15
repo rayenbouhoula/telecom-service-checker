@@ -101,5 +101,6 @@
     "Failed to get your location": "Impossible d’obtenir votre position",
     "Geolocation is not supported by your browser": "La géolocalisation n’est pas prise en charge par votre navigateur",
     "Please select a governorate" : "Veuillez sélectionner un gouvernorat",
-    "Coverage check failed. Please try again.": "La vérification a échoué. Veuillez réessayer."
+    "Coverage check failed. Please try again.": "La vérification a échoué. Veuillez réessayer.",
+    "Speed Test": "Test de Vitesse"
 }

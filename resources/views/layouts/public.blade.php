@@ -60,12 +60,15 @@
 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="{{ route('home') }}" class="text-gray-700 dark:text-gray-300 hover:text-tt-blue font-medium transition-colors {{ request()->routeIs('home') ? 'text-tt-blue border-b-2 border-tt-blue' : '' }} pb-1">
-                        {{ __('Home') }}
-                    </a>
-                    <a href="{{ route('coverage.public') }}" class="text-gray-700 dark:text-gray-300 hover:text-tt-blue font-medium transition-colors {{ request()->routeIs('coverage.public') ? 'text-tt-blue border-b-2 border-tt-blue' : '' }} pb-1">
-                        {{ __('Coverage') }}
-                    </a>
+                  <a href="{{ route('home') }}" class="text-gray-700 dark:text-gray-300 hover:text-tt-blue font-medium transition-colors {{ request()->routeIs('home') ? 'text-tt-blue border-b-2 border-tt-blue' : '' }} pb-1">
+                       {{ __('Home') }}
+                  </a>
+                  <a href="{{ route('coverage.public') }}" class="text-gray-700 dark:text-gray-300 hover:text-tt-blue font-medium transition-colors {{ request()->routeIs('coverage.public') ? 'text-tt-blue border-b-2 border-tt-blue' : '' }} pb-1">
+                       {{ __('Coverage') }}
+                  </a>
+                  <a href="{{ route('speedtest') }}" class="text-gray-700 dark:text-gray-300 hover:text-tt-blue font-medium transition-colors {{ request()->routeIs('speedtest') ? 'text-tt-blue border-b-2 border-tt-blue' : '' }} pb-1">
+                       {{ __('Speed Test') }}
+                  </a>
 
                     <!-- Dark Mode Toggle -->
                     <button onclick="toggleDarkMode()" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300">
@@ -119,6 +122,8 @@
         <a href="{{ route('coverage.public') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('coverage.public') ? 'bg-tt-blue text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700' }}">
             {{ __('Coverage') }}
         </a>
+        <a href="{{ route('speedtest') }}" class="block px-3 py-2 rounded-md text-base font-medium {{ request()->routeIs('speedtest') ? 'bg-tt-blue text-white' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700' }}">
+            {{ __('Speed Test') }}
         @auth
             <a href="{{ route('admin.dashboard') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
                 {{ __('Dashboard') }}
